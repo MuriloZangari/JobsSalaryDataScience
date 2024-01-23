@@ -639,10 +639,16 @@ ggplot(data_analyst, aes(x = experience_level, y = salary_in_usd, fill = experie
   geom_violin() +
   geom_boxplot(width = 0.2, fill = "white", color = "darkgrey", outlier.shape = NA) +
   labs(title = "Data Analysis profession Salary by Experience Level", x = "Experience Level", y = "Salary (USD)") +
-  stat_summary(fun.data = mean_cl_normal, geom = "text", size = 3, color = "black", fontface = "bold", aes(label = after_stat(y))) +  # Display mean value
+  stat_summary(fun.data = mean_cl_normal, geom = "text", size = 3, color = "black", fontface = "bold", aes(label = format_label(..y..))) +  # Display mean value
   scale_y_continuous(labels = scales::number_format(accuracy = 1, scale = 1e-3, suffix = "k"), breaks = seq(10000, 430000, by = 30000)) +  # Format y-axis labels
   theme_minimal()
 ```
+
+    ## Warning: The dot-dot notation (`..y..`) was deprecated in ggplot2 3.4.0.
+    ## ℹ Please use `after_stat(y)` instead.
+    ## This warning is displayed once every 8 hours.
+    ## Call `lifecycle::last_lifecycle_warnings()` to see where this warning was
+    ## generated.
 
 ![](Jobs_Salary_Data_Science_files/figure-gfm/unnamed-chunk-20-1.png)<!-- -->
 
@@ -717,12 +723,6 @@ ggplot(data_analyst_entry, aes(x = company_size, y = salary_in_usd, fill = compa
   scale_y_continuous(labels = scales::number_format(accuracy = 1, scale = 1e-3, suffix = "k"), breaks = seq(0, 164000, by = 15000)) +  # Format y-axis labels
   theme_minimal()
 ```
-
-    ## Warning: The dot-dot notation (`..y..`) was deprecated in ggplot2 3.4.0.
-    ## ℹ Please use `after_stat(y)` instead.
-    ## This warning is displayed once every 8 hours.
-    ## Call `lifecycle::last_lifecycle_warnings()` to see where this warning was
-    ## generated.
 
 ![](Jobs_Salary_Data_Science_files/figure-gfm/unnamed-chunk-23-1.png)<!-- -->
 

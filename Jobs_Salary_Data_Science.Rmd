@@ -386,7 +386,7 @@ ggplot(data_analyst, aes(x = experience_level, y = salary_in_usd, fill = experie
   geom_violin() +
   geom_boxplot(width = 0.2, fill = "white", color = "darkgrey", outlier.shape = NA) +
   labs(title = "Data Analysis profession Salary by Experience Level", x = "Experience Level", y = "Salary (USD)") +
-  stat_summary(fun.data = mean_cl_normal, geom = "text", size = 3, color = "black", fontface = "bold", aes(label = after_stat(y))) +  # Display mean value
+  stat_summary(fun.data = mean_cl_normal, geom = "text", size = 3, color = "black", fontface = "bold", aes(label = format_label(..y..))) +  # Display mean value
   scale_y_continuous(labels = scales::number_format(accuracy = 1, scale = 1e-3, suffix = "k"), breaks = seq(10000, 430000, by = 30000)) +  # Format y-axis labels
   theme_minimal()
 ```
