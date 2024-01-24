@@ -12,7 +12,7 @@ Jobs and Salaries in Data-Related Careers
   - [6.1 Average salary x `job_category` x
     `experience level`](#61-average-salary-x-job_category-x-experience-level)
   - [6.2 Exploring the Entry-level Data Analysis
-    profession](#62-exploring-the-entry-level-data-analysis-profession)
+    category](#62-exploring-the-entry-level-data-analysis-category)
   - [6.3 Where does the Entry-level Data Analysis job category have the
     best
     salaries?](#63-where-does-the-entry-level-data-analysis-job-category-have-the-best-salaries)
@@ -561,7 +561,7 @@ ggplot(summary_table, aes(x = experience_level, y = job_category, fill = average
   geom_tile(color = "white", linewidth = 0.5) +  # Add borders to tiles
   geom_text(aes(label = scales::number_format(accuracy = 1, scale = 1e-3, suffix = "k")(average_salary)), vjust = 1, size = 3, fontface = "bold") +
   scale_fill_gradient(low = "yellow", high = "blue", name = "Average Salary in USD", labels = scales::number_format(accuracy = 1, scale = 1e-3, suffix = "k")) +  # Customize the color scale
-  labs(title = "Average Salary in USD Heat Map", subtitle = "Grouped by Job Category and Experience Level",
+  labs(title = "The Average Salary Heat Map", subtitle = "Grouped by Job Category and Experience Level",
        x = "Experience Level",
        y = "Job Category") +
   theme_minimal()  # Use a minimal theme 
@@ -591,7 +591,7 @@ Based on the heat map results, the following observations can be made:
   positions of ‘Machine Learning AI’ with 207k and ‘Data Science and
   Research’ with 204k.
 
-## 6.2 Exploring the Entry-level Data Analysis profession
+## 6.2 Exploring the Entry-level Data Analysis category
 
 This section focuses on the **Entry-level Data Analysis subgroup** as it
 pertains to the business task.
@@ -616,7 +616,7 @@ summary_table <- data_analyst %>%  # create a summary tibble
 ggplot(summary_table, aes(x = experience_level, y = frequency, fill = experience_level)) +
   geom_bar(stat = "identity", position = "dodge") +
   geom_text(aes(label = frequency, vjust = 0.0)) +
-  labs(title = "Experience level distribution",
+  labs(title = "Experience level ocurrences bar chart",
        x = "Experience level",
        y = "Frequency",
        subtitle = " for the Data Analysis job category"
@@ -631,7 +631,7 @@ ggplot(summary_table, aes(x = experience_level, y = frequency, fill = experience
 ggplot(data_analyst, aes(x = experience_level, y = salary_in_usd, fill = experience_level)) +
   geom_violin() +
   geom_boxplot(width = 0.2, fill = "white", color = "darkgrey", outlier.shape = NA) +
-  labs(title = "Data Analysis profession Salary by Experience Level", x = "Experience Level", y = "Salary (USD)") +
+  labs(title = "The violin plot Salary: Data Analysis category", subtitle = "Grouped by Experience Level", x = "Experience Level", y = "Salary (USD)") +
   stat_summary(fun.data = mean_cl_normal, geom = "text", size = 3, color = "black", fontface = "bold", aes(label = format_label(..y..))) +  # Display mean value
   scale_y_continuous(labels = scales::number_format(accuracy = 1, scale = 1e-3, suffix = "k"), breaks = seq(10000, 430000, by = 30000)) +  # Format y-axis labels
   theme_minimal()
@@ -673,7 +673,7 @@ summary_table <- data_analyst_entry %>%
 ggplot(summary_table, aes(x = reorder(company_location, -avg_salary_entry_level), y = avg_salary_entry_level, fill = company_location)) +
   geom_bar(stat = "identity", position = "dodge") +
   geom_text(aes(label = scales::number_format(accuracy = 1, scale = 1e-3, suffix = "k")(avg_salary_entry_level)), vjust = -0.5, size = 3, fontface = "bold") +
-  labs(title = "Average annual salary", subtitle = "Entry-level Data Analysis category by Company Location",
+  labs(title = "The Average Salary bar chart", subtitle = "for the Entry-level Data Analysis category grouped by Company Location",
        x = "Company Location",
        y = "Average Salary"
        ) +
@@ -712,7 +712,7 @@ data_analyst_entry$company_size <- factor(data_analyst_entry$company_size, level
 ggplot(data_analyst_entry, aes(x = company_size, y = salary_in_usd, fill = company_size)) +
   geom_violin() +
   geom_boxplot(width = 0.2, fill = "white", color = "darkgrey", outlier.shape = NA) +
-  labs(title = "Data Analyst Entry-level Salary by Company Size", x = "Company Size", y = "Salary (USD)") +
+  labs(title = "The violin plot Salary: Entry-level Data Analysis category", subtitle = " Grouped by Company Size", x = "Company Size", y = "Salary (USD)") +
   stat_summary(fun.data = mean_cl_normal, geom = "text", size = 3, color = "black", fontface = "bold", aes(label = format_label(..y..))) +  # Display mean value
   scale_y_continuous(labels = scales::number_format(accuracy = 1, scale = 1e-3, suffix = "k"), breaks = seq(0, 164000, by = 15000)) +  # Format y-axis labels
   theme_minimal()
@@ -741,7 +741,7 @@ After analyzing the violin plot, I have made the following observations:
 ggplot(data_analyst_entry, aes(x = work_setting, y = salary_in_usd, fill = work_setting)) +
   geom_violin() +
   geom_boxplot(width = 0.2, fill = "white", color = "darkgrey", outlier.shape = NA) +
-  labs(title = "Data Analyst Entry-level Salary by Work Setting", x = "Work Setting", y = "Salary (USD)") +
+  labs(title = "The violin plot Salary: Entry-level Data Analysis category", subtitle = "Grouped by Work Setting", x = "Work Setting", y = "Salary (USD)") +
    stat_summary(fun.data = mean_cl_normal, geom = "text", size = 3, color = "black", fontface = "bold", aes(label = format_label(..y..))) +  # Display mean value
   scale_y_continuous(labels = scales::number_format(accuracy = 1, scale = 1e-3, suffix = "k"), breaks = seq(0, 165000, by = 10000)) +  # Format y-axis labels
   theme_minimal()
@@ -786,7 +786,7 @@ ggplot(summary_table, aes(x = experience_level, y = company_setting, fill = aver
   geom_tile(color = "white", linewidth = 0.5) +  # Add borders to tiles
   geom_text(aes(label = scales::number_format(accuracy = 1, scale = 1e-3, suffix = "k")(average_salary)), vjust = 1, size = 3, fontface = "bold") +
   scale_fill_gradient(low = "yellow", high = "blue", name = "Average Salary in USD", labels = scales::number_format(accuracy = 1, scale = 1e-3, suffix = "k")) +  # Customize the color scale
-  labs(title = "Average Salary: Data Analysis category in the United States", subtitle = "grouped by experience level, company size and work setting",
+  labs(title = "Average Salary Heat Map: Data Analysis category in the United States", subtitle = "Grouped by experience level, company size and work setting",
        x = "Experience Level",
        y = "Company size / Work setting") +
   theme_minimal()  # Use a minimal theme 
