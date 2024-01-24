@@ -11,21 +11,19 @@ output:
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-# Introduction
+This document is a case study prepared as part of the Google Data Analytics Capstone. It follows the six steps of the data analysis process, which are as follows: ask, prepare, process, analyze, share, and act.
 
-This document presents the case study conducted for the Google Data Analytics Capstone. The case study follows the steps of the data analysis process: **ask, prepare, process, analyze, share,** and **act**.
+This report comprises the following elements: 
 
-This document contains:
-
-  * The purpose of the analysis with a clear statement of the business task.
-  * A description of all data sources used.
-  * Documentation of the cleaning phase and data manipulation. 
+  * A clear statement of the business task and its purpose.
+  * A comprehensive description of the data sources utilized.
+  * Documentation of the cleaning and data manipulation phase.
   * The analysis with supporting visualizations and key findings.
-  * The insights and additional deliverables for further exploration.
+  * Valuable insights and additional deliverables for further exploration.
 
 # Purpose of the Analysis
 
-  In the dynamic and rapidly evolving landscape of data-related careers, understanding the scenario of job roles and salary trends is crucial for professionals seeking to navigate their career paths. By exploring key aspects such as job roles and salary overview the study aims to provide a roadmap and valuable insights for aspiring entry-level data-related professions.
+  In the dynamic and rapidly evolving landscape of data-related careers, understanding the scenario of job roles and salary trends is crucial for professionals seeking to navigate their career paths. By exploring key aspects such as the different job roles, location, experience level, and average salary, the study aims to provide a roadmap and valuable insights for aspiring entry-level data-related professions.
 
 * **Business Task**: A meaningful salary overview in Data-related careers around the globe, including the most enticing job roles, and career perspectives, with a focus on the Entry-level Data Analysis profession. 
 
@@ -40,36 +38,25 @@ This document contains:
   
 # Data source and Data description
 
-* The data is located at [ai-jobs.net](https://ai-jobs.net/salaries/2023/) and entitled "The Global AI, ML, Data Science Salary Index for 2023" which is based on internal data survey submissions and jobs with open salaries, as the authors describe the data. The data is processed and updated every week. You can contribute to them by submitting your salary info.
+The data is located at [ai-jobs.net](https://ai-jobs.net/salaries/2023/) and entitled "The Global AI, ML, Data Science Salary Index for 2023" which is based on internal data survey submissions and jobs with open salaries, as the authors describe the data. The data is processed and updated every week. You can contribute to them by submitting your salary info.
 
-* I have downloaded the data set from Hummaam Qaasim's profile in [Kaggle](https://www.kaggle.com/datasets/hummaamqaasim/jobs-in-data), where you can find the data card, the Metadata, and the License.
+I have downloaded the data set from Hummaam Qaasim's profile in [Kaggle](https://www.kaggle.com/datasets/hummaamqaasim/jobs-in-data), where you can find the data card, the Metadata, and the License.
 
-* The data set contains a single table with the following columns:
+The data set contains a single table with the following columns:
 
-  * **work_year**: The year in which the data was recorded.
-
-  * **job_title**: The specific title of the job role, like 'Data Scientist', 'Data Engineer', or 'Data Analyst'.
-
-  * **job_category**: A classification of the job role into broader categories for easier analysis.
-
-  * **salary_currency**: The currency in which the salary is paid, such as USS and EUR.
-
-  * **salary**: The annual gross salary of the role in the local currency.
-
-  * **salary_in_usd**: The annual gross salary converted to United States Dollars (USD). This uniform currency conversion aids in global salary comparisons and analyses.
-
-  * **employee_residence**: The country of residence of the employee.
-
-  * **experience_level**: Classifies the professional experience level of the employee. Common categories might include 'Entry-level', 'Mid-level', 'Senior', and 'Executive'.
-
-  * **employment_type**: Specifies the type of employment, such as 'Full-time', 'Part-time', and 'Contract'.
-
-  * **work_setting**: The work setting or environment, like 'Remote', 'In-person', or 'Hybrid'.
-
-  * **company_location**: The country where the company is located.
-
-  * **company_size**: The size of the employer company, often categorized into small (S), medium (M), and large (L) sizes.
-
+  * **`work_year`**: The year in which the data was recorded.
+  * **`job_title`**: The specific title of the job role, like 'Data Scientist', 'Data Engineer', or 'Data Analyst'.
+  * **`job_category`**: A classification of the job role into broader categories for easier analysis.
+  * **`salary_currency`**: The currency in which the salary is paid, such as USS and EUR.
+  * **`salary`**: The annual gross salary of the role in the local currency.
+  * **`salary_in_usd`**: The annual gross salary converted to United States Dollars (USD). This uniform currency conversion aids in global salary comparisons and analyses.
+  * **`employee_residence`**: The country of residence of the employee.
+  * **`experience_level`**: Classifies the professional experience level of the employee. Common categories might include 'Entry-level', 'Mid-level', 'Senior', and 'Executive'.
+  * **`employment_type`**: Specifies the type of employment, such as 'Full-time', 'Part-time', and 'Contract'.
+  * **`work_setting`**: The work setting or environment, like 'Remote', 'In-person', or 'Hybrid'.
+  * **`company_location`**: The country where the company is located.
+  * **`company_size`**: The size of the employer company, often categorized into small (S), medium (M), and large (L) sizes.
+  
 # Preparing the data for analysis
 
 I have used the RStudio and the R Markdown to manipulate, transform, analyze, and create the visuals.
@@ -134,7 +121,7 @@ print(summary_table)
 
 # Preliminary statistics
 
-In this section, I present preliminary statistics focused on the proportion (frequency) of the unique values for each attribute. 
+In this section, I present preliminary statistics focused on the proportion (distribution) of the unique values for each attribute. 
 
 * **Analyzing `work_year`: unique values and frequency**
 
@@ -166,7 +153,7 @@ data_job <- data_df %>%
 print(data_job)
 ```
 
-The table above shows the frequency of the ten different job categories, being "Data Science and Research" and "Data Engineering" the two most popular, followed by "Data Analysis" representing 15.6% of the total. This means that the database has been populated by different Data-related jobs but in different proportions. It is important to note this distribution, as it directly affects the statistical calculations and metrics such as the average.
+The table presented above depicts the frequency of ten distinct job categories. "Data Science and Research" and "Data Engineering" are the two most prevalent categories, followed by "Data Analysis" which accounts for 15.6% of the total. This indicates that the database contains various job titles related to data, but in different proportions. It is crucial to take note of this distribution because it directly affects statistical calculations and metrics, such as the average.
 
 For instance, the `'job_category' = "Data Science and Research"` covers the following `job_titles`:
 
@@ -182,7 +169,7 @@ data_science_tibble <- data_df %>%
 print(data_science_tibble)
 ```
 
-The table shows that the `'job_category' == "Data Science and Researcher"` encompasses **23** different job_titles. 
+The table presented above shows that the `'job_category' == "Data Science and Researcher"` encompasses **23** different job_titles. 
 
 The `'job category' = "Data Analysis"` covers **14** job_titles:
 
@@ -223,6 +210,7 @@ exp_level <- data_df %>%
 
 print(exp_level)
 ```
+
 The table presented above indicates that the majority of employees in the database are labeled as 'Senior', accounting for 71.7% of the total. On the other hand, only a small percentage of employees are classified as 'Entry-level', representing only 5.3% of the workforce. It raises the question of why there is such an imbalance between the number of 'Seniors' and other levels. Further investigation is needed to determine if this proportion accurately reflects the actual scenario.
 
 * **Analyzing the `employment_type`: unique values and frequency**
@@ -237,7 +225,7 @@ emp_type <- data_df %>%
 print(emp_type)
 ```
 
-The table above shows that 99.5% of the entries are composed of full-time jobs, which is the most common type of job offer.
+The table provided above offers a detailed breakdown of the types of job offers available. As per the data, out of all the entries, 99.5% of the entries are full-time positions. This suggests that full-time jobs are the most sought-after and commonly available type of employment.
 
 * **Analyzing the top 10 `company_location` by frequency**
 
@@ -252,11 +240,11 @@ print(head(result_tibble,10))
   
 ```
 
-The table above shows that the United States (US) is the most frequent company location, being 86.8% of the total. The column `salary_in_usd` represents the annual gross salary converted to USD. This uniform currency conversion aids in global salary comparisons and analyses. 
+The table presented above shows that the United States is the most frequent company location, being 86.8% of the total. The column `salary_in_usd` represents the annual gross salary converted to USD. This uniform currency conversion aids in global salary comparisons and analyses. 
 
 * **Analyzing the `company_size` and `work_setting`: unique values and frequency**
 
-The column `company_size` has three unique values: `S` (small), `M`(medium), and `L` (large). The column `work_setting` also has three unique values `[Hybrid, In-person, Remote]`. I present the distribution of these columns in the form of a **pivot table**, where I transform the `work_setting` unique values into new columns. 
+The `company_size` column encompasses three distinct values: `S` (small), `M` (medium), and `L` (large). Simultaneously, the `work_setting` column features three unique values within the range of `[Hybrid, In-person, Remote]`. I illustrate the distribution of these columns through a **pivot table**, wherein I reconfigure the unique values of the `work_setting` column into new individual columns.
 
 ```{r}
 summary_table <- data_df %>% #create a summary table
@@ -267,13 +255,13 @@ summary_table <- data_df %>% #create a summary table
 print(summary_table)
 ```
 
-The table above shows that the medium company size "M" covers 90% of the entries. In regards to `work_setting`, the most popular still is `"In-person"` covering 61% of the total, followed by `Remote` with 36.7%. Overall, the combination (subgroup) `"M" AND In-person` has 5.314 rows, covering 56.8% of the total.
+The table presented above shows that the medium company size "M" covers 90% of the entries. In regards to `work_setting`, the most popular still is `"In-person"` covering 61% of the total, followed by `Remote` with 36.7%. Overall, the combination (subgroup) `"M" AND In-person` has 5.314 rows, covering 56.8% of the total.
 
 # Analysis and Visuals
 
-  In this section, I explore the relationships between pivotal columns and their consequential influence on average salary. I have used visualizations like heatmaps and violin plots to illuminate the correlations among the factors `job_category`, `company_location`, `experience_level`, `company_size`, and `work_setting`, shedding light on the variations in the average salary.
+ In this section, I have analyzed how certain columns influence average salary. I have used visualizations such as heatmaps and violin plots to show the correlations between the following factors: `job_category`, `company_location`, `experience_level`, `company_size`, and `work_setting`. Through these visualizations, I have highlighted the differences in average salary that arise due to these factors.
   
-  Moreover, to enhance the interactive exploration of this dataset, I have crafted a comprehensive [Tableau Dashboard](https://public.tableau.com/views/JobsandSalariesinData-RelatedCareers/Dashboard1?:language=en-GB&:display_count=n&:origin=viz_share_link). This dynamic visualization incorporates the same dataset, offering an immersive experience with features like a map and filters. For an in-depth exploration, feel free to explore the interactive Jobs Salaries in Data-related Careers Dashboard [here](https://public.tableau.com/views/JobsandSalariesinData-RelatedCareers/Dashboard1?:language=en-GB&:display_count=n&:origin=viz_share_link).
+  Moreover, to enhance the interactive exploration of this dataset, I have crafted a supplementary [Tableau Dashboard](https://public.tableau.com/views/JobsandSalariesinData-RelatedCareers/Dashboard1?:language=en-GB&:display_count=n&:origin=viz_share_link). This dynamic visualization incorporates the same dataset, offering an immersive experience with features like a map and filters. For an in-depth exploration, feel free to explore the interactive [Jobs Salaries in Data-related Careers Dashboard](https://public.tableau.com/views/JobsandSalariesinData-RelatedCareers/Dashboard1?:language=en-GB&:display_count=n&:origin=viz_share_link).
 
 ## Average salary x `job_category` x `experience level`
 
@@ -334,15 +322,14 @@ Based on the heat map results, the following observations can be made:
   
 ## Exploring the Entry-level Data Analysis profession
 
-This section focuses on the Entry-level Data Analysis subgroup as it pertains to the business task.
-
-Filtering the Data Analysis Profession: 
+This section focuses on the **Entry-level Data Analysis subgroup** as it pertains to the business task.
 
 ```{r}
 #filtering the data frame having only the data analysis category
 data_analyst <- data_full_time[data_full_time$job_category == 'Data Analysis',]
 
 ```
+
 How do different factors, such as experience level, company location, company size, and work setting, impact variations in salary?
 
 ```{r, include=FALSE}
@@ -359,7 +346,7 @@ format_label <- function(x) {
 
 ```
 
-The visualization below displays the number of times each unique value of `experience_level` appears in the data.
+The visualization below displays the number of times each unique value of `experience_level` appears in for the filtered data.
 
 ```{r}
 summary_table <- data_analyst %>%  # create a summary tibble
@@ -370,14 +357,15 @@ summary_table <- data_analyst %>%  # create a summary tibble
 ggplot(summary_table, aes(x = experience_level, y = frequency, fill = experience_level)) +
   geom_bar(stat = "identity", position = "dodge") +
   geom_text(aes(label = frequency, vjust = 0.0)) +
-  labs(title = "Experience level - frequency in the data set",
+  labs(title = "Experience level distribution",
        x = "Experience level",
        y = "Frequency",
-       subtitle = "Data Analysis job category"
+       subtitle = " for the Data Analysis job category"
        ) +
   theme_minimal()
   
 ```
+
 ```{r}
 # Create a violin plot with statistics
 ggplot(data_analyst, aes(x = experience_level, y = salary_in_usd, fill = experience_level)) +
@@ -389,11 +377,12 @@ ggplot(data_analyst, aes(x = experience_level, y = salary_in_usd, fill = experie
   theme_minimal()
 ```
 
-The salary incrementally rises as one progresses from the "Entry-level" to the "Senior" position. Interestingly, despite being a more senior position, the "Executive" role has a lower average salary than the "Senior" position. This unexpected result may be due to the disproportionate representation of the "Senior" position in the database, which appears nine times more frequently than the "Executive" position.
+According to the table presented above, the salary incrementally rises as one progresses from the "Entry-level" to the "Senior" position. Interestingly, despite being a more higher position, the "Executive" role has a lower average salary than the "Senior" position. This unexpected result may be due to the disproportionate representation of the "Senior" position in the database, which appears nine times more frequently than the "Executive" position.
   
 ## Where does the Entry-level Data Analysis job category have the best salaries?
 
 *  Filtering the data frame
+
 ```{r}
 #filtering the data frame having only the data analysis category AND Entry-level
 data_analyst_entry <- data_analyst[data_analyst$experience_level == 'Entry-level',]
@@ -451,7 +440,7 @@ After analyzing the violin plot, I have made the following observations:
 
 * The size of the company has an impact on the average salary, with medium and large companies offering better compensation than small companies.
 
-* It is worth noting that the average salary for medium-sized companies is better than that of large-sized companies. However, it is important to keep in mind that this plot does not take into account other factors such as the location of the company. Since the data has more entries from the United States, and this country has the highest average salary, the proportion of medium and large companies in the US might be masking this average.
+* It is worth noting that the average salary for medium-sized companies seems better than that of large-sized companies. However, it is important to keep in mind that this plot does not take into account other factors such as the location of the company. Since the data has more entries from the United States which is the country with the highest average salary, the proportion of medium and large companies in the United States might be masking this average.
   
 ## How does the work setting influence the Entry-level Data Analyst's salary?
 
@@ -508,23 +497,23 @@ Based on the results of the heat map, we can make the following observations:
 
 - Entry-level employees working in small companies with a hybrid work setup receive the lowest average salary. On the other hand, those working in medium-sized companies in person earn an average salary of 82k, which is the highest for entry-level positions.
 
-- Senior Data Analysts working in large companies in person receive the highest average salary.
+- Senior Data Analysts working in large companies in-person receive the highest average salary.
 
 - Overall, it can be observed that experience level is the factor that has the most significant impact on an employee's average salary in the US.
   
-Key Insights and Recommendations:
+# Key Insights and Recommendations:
 
-This section presents the key insights addressing the business questions.
+This section presents the key insights that address the business questions.
 
-- The correlation between experience level and salary is significant. The average salary tends to increase with experience level. For example, professionals in "Machine Learning and AI" witness substantial salary increases ranging from 93k to 207k in the United States.
+- The correlation between experience level and salary is significant. The average salary tends to increase with experience level. For example, professionals in "Machine Learning and AI" witness substantial salary increases ranging from $93k (entry-level) to $207k (executive).
 
-- The top 5 well-paid data-related jobs are "Machine Learning and AI," "Data Science and Research," "Data Engineering," and "Leadership and Management."
+- The top five well-paid data-related jobs are "Machine Learning and AI," "Data Science and Research," "Data Engineering," and "Leadership and Management."
 
 - Although "BI and Visualization" commands a higher average salary than "Data Analysis," these categories often share similar technical skills and responsibilities.
 
-- The United States has the best salaries compared to other countries. Luxembourg, the United Kingdom, and Germany are the best countries to start a career as a Data Analyst.
+- The United States has the best salaries compared to other countries in all job categories, especially for the "Data Analysis" category. The top three countries to start a career as an entry-level Data Analyst are the United States, the United Kingdom, and Germany, with salaries of $77k, $58k, and $57k, respectively. It is worth noting that we are not taking into account the cost of living in each country. To view the filtered data demographically, and according to other factors, please check the [Tableau Dashboard](https://public.tableau.com/app/profile/murilo.zangari/viz/JobsandSalariesinData-RelatedCareers/Dashboard1).
 
-- Work in person or remotely exhibits minimal impact on the average salary. For instance, an entry-level data analyst receives an average salary of 73k in person and 72k remotely. However, the dataset's limited representation of hybrid work settings warrants cautious interpretation.
+- Working in person or remotely has minimal impact on the average salary. For instance, an entry-level data analyst receives an average salary of $73k in person and $72k remotely. However, the dataset's limited representation of hybrid work settings warrants cautious interpretation.
 
 **Career Guidance:**
 
