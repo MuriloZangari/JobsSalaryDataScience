@@ -14,22 +14,21 @@ Jobs and Salaries in Data-Related Careers
     `experience level`](#71-average-salary-x-job_category-x-experience-level)
   - [7.2 Exploring the Entry-level Data Analysis
     profession](#72-exploring-the-entry-level-data-analysis-profession)
-  - [7.3 Where do entry-level Data Analysis job category has the best
-    salaries?](#73-where-do-entry-level-data-analysis-job-category-has-the-best-salaries)
-  - [7.4 How does the size of the company influence the Entry-level Data
+  - [7.3 Where does the Entry-level Data Analysis job category have the
+    best
+    salaries?](#73-where-does-the-entry-level-data-analysis-job-category-have-the-best-salaries)
+  - [7.4 How does the company size influence the Entry-level Data
     Analysis
-    salary?](#74-how-does-the-size-of-the-company-influence-the-entry-level-data-analysis-salary)
+    salary?](#74-how-does-the-company-size-influence-the-entry-level-data-analysis-salary)
   - [7.5 How does the work setting influence the Entry-level Data
     Analyst’s
     salary?](#75-how-does-the-work-setting-influence-the-entry-level-data-analysts-salary)
-  - [7.6 Scenario: Data Analysts in the United
-    States](#76-scenario-data-analysts-in-the-united-states)
-- [8 Key Insights and
-  Recommendations](#8-key-insights-and-recommendations)
+  - [7.6 Scenario: Data Analysts profession in the United
+    States](#76-scenario-data-analysts-profession-in-the-united-states)
 
 # 1 Introduction
 
-This document present the case study conducted for the Google Data
+This document presents the case study conducted for the Google Data
 Analytics Capstone. The case study follows the steps of the data
 analysis process: **ask, prepare, process, analyze, share,** and
 **act**.
@@ -41,7 +40,7 @@ This document contains:
 - A description of all data sources used.
 - Documentation of the cleaning phase and data manipulation.
 - The analysis with supporting visualizations and key findings.
-- The insights and additional deliverable for further exploration.
+- The insights and additional deliverables for further exploration.
 
 # 2 Purpose of the Analysis
 
@@ -54,12 +53,12 @@ professions.
 
 - **Business Task**: A meaningful salary overview in Data-related
   careers around the globe, including the most enticing job roles, and
-  career perspectives, with a focus on Entry-level Data Analysis
+  career perspectives, with a focus on the Entry-level Data Analysis
   profession.
 
 - **Key Stakeholder:** In this case study, the primary stakeholder is
-  the data analyst conducting the analysis. In the following, I list a
-  number of guiding questions to be answered with the analysis:
+  the data analyst conducting the analysis. In the following, I list
+  several guiding questions to be answered with the analysis:
 
   - How the data is organized?
   - Are there issues with bias or credibility in this data?
@@ -73,11 +72,11 @@ professions.
 # 3 Data source and Data description
 
 - The data is located at
-  [ai-jobs.net](https://ai-jobs.net/salaries/2023/) entitled “The Global
-  AI, ML, Data Science Salary Index for 2023” which is based on internal
-  data survey submissions and jobs with open salaries, as the authors
-  describe the data. The data is processed and updated on a weekly
-  basis. You can contribute with them by submitting your salary info.
+  [ai-jobs.net](https://ai-jobs.net/salaries/2023/) and entitled “The
+  Global AI, ML, Data Science Salary Index for 2023” which is based on
+  internal data survey submissions and jobs with open salaries, as the
+  authors describe the data. The data is processed and updated every
+  week. You can contribute to them by submitting your salary info.
 
 - I have downloaded the data set from Hummaam Qaasim’s profile in
   [Kaggle](https://www.kaggle.com/datasets/hummaamqaasim/jobs-in-data),
@@ -419,12 +418,13 @@ print(exp_level)
     ## 3           Senior      6709           71.7
     ## 4        Executive       281            3.0
 
-The table above shows that the ‘Senior’ populates 71.7% of the total,
-and the ‘Entry-level’ represents only 5.3%. It would be interesting to
-deeply explore this factor. It would be interesting to understand this
-proportion. Why does the database have a significantly higher number of
-‘Seniors’ compared to the other levels? By exploring this, we can find
-out if this proportion really represents the real scenario.
+The table presented above indicates that the majority of employees in
+the database are labeled as ‘Senior’, accounting for 71.7% of the total.
+On the other hand, only a small percentage of employees are classified
+as ‘Entry-level’, representing only 5.3% of the workforce. It raises the
+question of why there is such an imbalance between the number of
+‘Seniors’ and other levels. Further investigation is needed to determine
+if this proportion accurately reflects the actual scenario.
 
 - **Analyzing the `employment_type`: unique values and frequency**
 
@@ -504,9 +504,9 @@ print(summary_table)
 
 The table above shows that the medium company size “M” covers 90% of the
 entries. In regards to `work_setting`, the most popular still is
-`In-person` covering 61% of the total, followed by `Remote` with 36.7%.
-Overall, the combination (subgroup) `M AND In-person` has 5.314 rows,
-covering 56.8% of the total.
+`"In-person"` covering 61% of the total, followed by `Remote` with
+36.7%. Overall, the combination (subgroup) `"M" AND In-person` has 5.314
+rows, covering 56.8% of the total.
 
 # 7 Analysis and Visuals
 
@@ -528,11 +528,12 @@ in Data-related Careers Dashboard
 
 ## 7.1 Average salary x `job_category` x `experience level`
 
-In this study, I have considered only the **full-time employment type**
-(that corresponds to 99.5% of the total) because it is the employment
-type that most individuals used to search. Moreover, the statistical
-analysis can “view” the remained employment types (e.g., ‘part-time’ and
-‘freelance’) as outlined points.
+For this study, I focused solely on individuals who are employed
+full-time, as this represents 99.5% of the total sample. This employment
+type is the most commonly searched for by individuals. Any other
+employment types, such as part-time or freelance, were noted but not
+included in the statistical analysis and were considered as outlined
+points.
 
 ``` r
 #filtering the data frame having only the full-time employment type
@@ -576,43 +577,45 @@ ggplot(summary_table, aes(x = experience_level, y = job_category, fill = average
 
 ![](Jobs_Salary_Data_Science_files/figure-gfm/unnamed-chunk-16-1.png)<!-- -->
 
-The heatmap has a colour scale representing the average salary - from
-the lowest (yellow) to the highest (blue). Also, the number in each cell
-represents the average salary (in thousands (k)).
+The heatmap displays the average salary with a colour scale ranging from
+yellow (lowest) to blue (highest). Each cell contains the average salary
+in thousands (k).
 
-Remarks:
+Based on the heat map results, the following observations can be made:
 
-- The salary increases with the experience level, except for the Data
-  Analysis category where the ‘Senior’ has an average of 120k and the
-  ‘Executive’ 110k. In the next section, I have investigated the job
-  category ‘Data Analyst’ in detail.
+- The salary increases with experience level, except for the ‘Data
+  Analysis’ category where the ‘Senior’ level has an average salary of
+  120k and the ‘Executive’ level has an average salary of 110k. For more
+  detailed information about the ‘Data Analyst’ job category, please
+  refer to the next section.
 
-- The highest average salary for the ‘entry-level’ is ‘Data Science and
-  Research’ with 101k, followed by ‘Data Engineering’ with 96k. The Data
-  Analysis entry-level appears with 70k, being 31k less than ‘Data
-  Science and Research’. There seems to be a significant difference.
+- The average salary for entry-level positions is highest for the ‘Data
+  Science and Research’ category with 101k, followed by ‘Data
+  Engineering’ with 96k. However, the entry-level salary for ‘Data
+  Analysis’ is only 70k, which is 31k less than the ‘Data Science and
+  Research’ category. This indicates a significant difference.
 
-- The highest salary is represented by the ‘Executive’ ‘Machine Learning
-  AI’ with 207k, followed by the ‘Executive’ ’Data Science and Research
-  with 204k.
+- The highest salaries are represented by the ‘Executive’ level
+  positions of ‘Machine Learning AI’ with 207k and ‘Data Science and
+  Research’ with 204k.
 
 ## 7.2 Exploring the Entry-level Data Analysis profession
 
-This section focus on the Entry-level Data Analysis subgroup because it
-answers the business task.
+This section focuses on the Entry-level Data Analysis subgroup as it
+pertains to the business task.
 
-Filtering the Data Analysis profession:
+Filtering the Data Analysis Profession:
 
 ``` r
 #filtering the data frame having only the data analysis category
 data_analyst <- data_full_time[data_full_time$job_category == 'Data Analysis',]
 ```
 
-How factors like experience level, company location, company size, and
-work setting contribute to variations in salary?
+How do different factors, such as experience level, company location,
+company size, and work setting, impact variations in salary?
 
-The following viz presents the frequency of `experience_level` unique
-values.
+The visualization below displays the number of times each unique value
+of `experience_level` appears in the data.
 
 ``` r
 summary_table <- data_analyst %>%  # create a summary tibble
@@ -652,19 +655,20 @@ ggplot(data_analyst, aes(x = experience_level, y = salary_in_usd, fill = experie
 
 ![](Jobs_Salary_Data_Science_files/figure-gfm/unnamed-chunk-20-1.png)<!-- -->
 
-Remarks:
+The salary incrementally rises as one progresses from the “Entry-level”
+to the “Senior” position. Interestingly, despite being a more senior
+position, the “Executive” role has a lower average salary than the
+“Senior” position. This unexpected result may be due to the
+disproportionate representation of the “Senior” position in the
+database, which appears nine times more frequently than the “Executive”
+position.
 
-- The salary gradually increases from “Entry-level” to “Senior”.
+## 7.3 Where does the Entry-level Data Analysis job category have the best salaries?
 
-- Senior has a higher average salary than “Executive”. This unexpected
-  result may have occurred due to the poor distribution of cases in the
-  database, where “Senior” appears nine times more often than
-  “Executive”.
-
-## 7.3 Where do entry-level Data Analysis job category has the best salaries?
+- Filtering the data frame
 
 ``` r
-#filtering the data frame having only the data analysis category AND entry level
+#filtering the data frame having only the data analysis category AND Entry-level
 data_analyst_entry <- data_analyst[data_analyst$experience_level == 'Entry-level',]
 
 summary_table <- data_analyst_entry %>% 
@@ -692,20 +696,20 @@ ggplot(summary_table, aes(x = reorder(company_location, -avg_salary_entry_level)
 
 ![](Jobs_Salary_Data_Science_files/figure-gfm/unnamed-chunk-22-1.png)<!-- -->
 
-Remarks:
+Based on the bar chart results, the following observations can be made:
 
-- The United States has a significantly higher average salary (77k)
-  compared with the other countries, which is higher than the overall
-  countries’ average salary (70k).
-- Luxembourg, the United Kingdom, Germany, and Canada compose the top 5
-  countries. That is interesting because I am a citizen of the European
-  Union, so it could be easier for me to get a job in Germany. I like
-  Spain, however, the starting salary there is very low compared to
-  other countries, appearing only in 15th position. On the other hand,
-  we have to take into account the cost of living in each of these
-  countries, which can be investigated in the future.
+The average salary in the United States is significantly higher at
+\$77,000 compared to other countries. Luxembourg and the United Kingdom
+follow in second and third place with \$59,000 and \$58,000
+respectively, while Germany ranks fourth with \$54,000.
 
-## 7.4 How does the size of the company influence the Entry-level Data Analysis salary?
+Note the number of entries for each country and the “Entry-level Data
+Analysis” subgroup in the dataset. For example, the United States has
+103 entries, the United Kingdom has 10, Germany has 2, and Luxembourg
+has 1. This could affect the generalization of results, and it will be
+interesting to see if the outcome changes after updating the data.
+
+## 7.4 How does the company size influence the Entry-level Data Analysis salary?
 
 ``` r
 # Define the order of company size
@@ -726,17 +730,19 @@ ggplot(data_analyst_entry, aes(x = company_size, y = salary_in_usd, fill = compa
 
 ![](Jobs_Salary_Data_Science_files/figure-gfm/unnamed-chunk-23-1.png)<!-- -->
 
-Remarks:
+After analyzing the violin plot, I have made the following observations:
 
-- The company size also impacts on the average annual salary, we can see
-  that Medium and Large companies have better compensation than Small
+- The size of the company has an impact on the average salary, with
+  medium and large companies offering better compensation than small
   companies.
-- In regards to the difference between “M” and “L”, it is worth
-  recalling that “M” and “L” company sizes cover 90% and 8%
-  respectively, that means the attribute `company_size` is imbalanced,
-  which is detrimental to the statistics, not representing the
-  population. In this scenario, one of the solutions is to increase the
-  cases of “L” company size in the database.
+
+- It is worth noting that the average salary for medium-sized companies
+  is better than that of large-sized companies. However, it is important
+  to keep in mind that this plot does not take into account other
+  factors such as the location of the company. Since the data has more
+  entries from the United States, and this country has the highest
+  average salary, the proportion of medium and large companies in the US
+  might be masking this average.
 
 ## 7.5 How does the work setting influence the Entry-level Data Analyst’s salary?
 
@@ -753,18 +759,17 @@ ggplot(data_analyst_entry, aes(x = work_setting, y = salary_in_usd, fill = work_
 
 ![](Jobs_Salary_Data_Science_files/figure-gfm/unnamed-chunk-24-1.png)<!-- -->
 
-Remark:
+There is no significant difference in salary between working in-person
+or remotely, with both having an average of 72-73k. However, the average
+salary is lower in a hybrid working setting, as shown in the
+visualization.
 
-- Working in-person or remotely has no significant difference to the
-  salary, having an average of 73k and 72k respectively. However, the
-  viz shows that a hybrid working setting has a lower average salary.
+## 7.6 Scenario: Data Analysts profession in the United States
 
-## 7.6 Scenario: Data Analysts in the United States
-
-To ensure a fair comparison and eliminate salary differences between
-countries, I conducted the analysis specifically for the United States,
-as it is the country with the most entries in the data set,
-corresponding to 86.8% of the total.
+To eliminate salary differences between countries and ensure a fair
+comparison, I specifically analyzed the United States. The United States
+had the highest number of entries in the data set, accounting for 86.8%
+of the total.
 
 ``` r
 #Filtering the original data frame 'data_df' to select only United States AND Data Analysis AND Full-time
@@ -799,47 +804,51 @@ ggplot(summary_table, aes(x = experience_level, y = company_setting, fill = aver
 
 ![](Jobs_Salary_Data_Science_files/figure-gfm/unnamed-chunk-26-1.png)<!-- -->
 
-Remarks: \* Entry-level Data Analysts in small companies working hybrid
-have the lowest average salary, The best average salary for an
-entry-level is 82k in a medium-sized company working in person.
+Based on the results of the heat map, we can make the following
+observations:
 
-- Senior Data Analysts in large companies working in person have the
+- Entry-level employees working in small companies with a hybrid work
+  setup receive the lowest average salary. On the other hand, those
+  working in medium-sized companies in person earn an average salary of
+  82k, which is the highest for entry-level positions.
+
+- Senior Data Analysts working in large companies in person receive the
   highest average salary.
 
-- Overall, we can reinforce that the experience level is the factor that
-  impacts the most on the average salary.
+- Overall, it can be observed that experience level is the factor that
+  has the most significant impact on an employee’s average salary in the
+  US.
 
-# 8 Key Insights and Recommendations
+Key Insights and Recommendations:
 
 This section presents the key insights addressing the business
 questions.
 
-- **The correlation between experience level and salary is pronounced.**
-  The average salary tends to increase with the experience level. For
-  example, “Machine Learning and AI” professional witness substantial
-  salary increases from entry to executive levels, ranging from 93k to
-  207k in the United States.
+- The correlation between experience level and salary is significant.
+  The average salary tends to increase with experience level. For
+  example, professionals in “Machine Learning and AI” witness
+  substantial salary increases ranging from 93k to 207k in the United
+  States.
 
-- **Top 5 Well-Paid Data-Related Jobs:** “Machine Learning and AI,”
+- The top 5 well-paid data-related jobs are “Machine Learning and AI,”
   “Data Science and Research,” “Data Engineering,” and “Leadership and
-  Management” emerge as the top-paying roles within the data domain.
+  Management.”
 
-- **Distinguishing “BI and Visualization” from “Data Analysis”:** While
-  “BI and Visualization” commands a higher average salary than “Data
-  Analysis,” it’s essential to note that these categories often share
-  similar technical skills and responsibilities.
+- Although “BI and Visualization” commands a higher average salary than
+  “Data Analysis,” these categories often share similar technical skills
+  and responsibilities.
 
-- **The United States has the best salaries compared to other
-  countries.** Luxembourg, the United Kingdom, and Germany compose the
-  best countries to start a career as a Data Analyst.
+- The United States has the best salaries compared to other countries.
+  Luxembourg, the United Kingdom, and Germany are the best countries to
+  start a career as a Data Analyst.
 
-- **Work in person or remotely exhibits minimal impact on the average
-  salary.** For instance, an entry-level data analyst receives an
-  average salary of 73k in person and 72k remotely. The dataset’s
+- Work in person or remotely exhibits minimal impact on the average
+  salary. For instance, an entry-level data analyst receives an average
+  salary of 73k in person and 72k remotely. However, the dataset’s
   limited representation of hybrid work settings warrants cautious
   interpretation.
 
-**Career Guidance**
+**Career Guidance:**
 
 Based on the insights, “Data Science and Research” and “Machine Learning
 and AI” stand out as promising career paths, offering lucrative
@@ -847,7 +856,7 @@ opportunities from entry-level positions. The satisfaction of working in
 these fields aligns with their high demand and potential for
 professional growth.
 
-**Further exploration**
+**Further exploration:**
 
 - **Consideration of Cost of Living:** An insightful addition could
   involve integrating a new column detailing the average cost of living
@@ -855,8 +864,8 @@ professional growth.
   identifying countries with optimal salary-to-cost-of-living ratios.
 
 - **Addressing Attribute Imbalances:** A simple but efficient way to
-  address imbalanced data set is to increasing the number of cases,
-  specially for the minority cases. Encouraging other Data-related
+  address imbalanced data sets is to increase the number of cases,
+  especially for the minority cases. Encouraging other data-related
   professionals to respond to the survey would be remarkable.
 
 - **Dynamic Analysis with Weekly Updates:** Acknowledging the weekly
