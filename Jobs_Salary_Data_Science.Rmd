@@ -369,12 +369,17 @@ ggplot(summary_table, aes(x = experience_level, y = frequency, fill = experience
 ```
 
 ```{r}
-# Create a violin plot with statistics
+# Calculate averages by experience level
+averages <- data_analyst %>%
+  group_by(experience_level) %>%
+  summarise(avg_salary = mean(salary_in_usd))
+
+# Plot
 ggplot(data_analyst, aes(x = experience_level, y = salary_in_usd, fill = experience_level)) +
   geom_violin() +
   geom_boxplot(width = 0.2, fill = "white", color = "darkgrey", outlier.shape = NA) +
+  geom_text(data = averages, aes(x = experience_level, y = avg_salary, label = scales::number_format(scale = 1e-3, accuracy = 1, suffix = "k")(avg_salary)), color = "black", size = 3, fontface = "bold") +  # Display averages as text labels
   labs(title = "The violin plot Salary: Data Analysis category", subtitle = "Grouped by Experience Level", x = "Experience Level", y = "Salary (USD)") +
-  stat_summary(fun.data = mean_cl_normal, geom = "text", size = 3, color = "black", fontface = "bold", aes(label = format_label(..y..))) +  # Display mean value
   scale_y_continuous(labels = scales::number_format(accuracy = 1, scale = 1e-3, suffix = "k"), breaks = seq(10000, 430000, by = 30000)) +  # Format y-axis labels
   theme_minimal()
 ```
@@ -415,7 +420,7 @@ ggplot(summary_table, aes(x = reorder(company_location, -avg_salary_entry_level)
 
 Based on the bar chart results, the following observations can be made:
 
-  The average salary in the United States is significantly higher at $77,000 compared to other countries. Luxembourg and the United Kingdom follow in second and third place with $59,000 and $58,000 respectively, while Germany ranks fourth with $54,000.
+  The average salary in the United States is significantly higher at \$77,000 compared to other countries. Luxembourg and the United Kingdom follow in second and third place with \$59,000 and \$58,000 respectively, while Germany ranks fourth with $54,000.
 
 Note the number of entries for each country and the "Entry-level Data Analysis" subgroup in the dataset. For example, the United States has 103 entries, the United Kingdom has 10, Germany has 2, and Luxembourg has 1. This could affect the generalization of results, and it will be interesting to see if the outcome changes after updating the data.
   
@@ -428,31 +433,42 @@ company_size_order <- c("S", "M", "L")
 # Convert experience_level to a factor with a defined order
 data_analyst_entry$company_size <- factor(data_analyst_entry$company_size, levels = company_size_order)
 
+# Calculate averages by experience level
+averages <- data_analyst_entry %>%
+  group_by(company_size) %>%
+  summarise(avg_salary = mean(salary_in_usd))
+
 # Create a violin plot with statistics
 ggplot(data_analyst_entry, aes(x = company_size, y = salary_in_usd, fill = company_size)) +
   geom_violin() +
   geom_boxplot(width = 0.2, fill = "white", color = "darkgrey", outlier.shape = NA) +
+  geom_text(data = averages, aes(x = company_size, y = avg_salary, label = scales::number_format(scale = 1e-3, accuracy = 1, suffix = "k")(avg_salary)), color = "black", size = 3, fontface = "bold") +  # Display averages as text labels
   labs(title = "The violin plot Salary: Entry-level Data Analysis category", subtitle = " Grouped by Company Size", x = "Company Size", y = "Salary (USD)") +
-  stat_summary(fun.data = mean_cl_normal, geom = "text", size = 3, color = "black", fontface = "bold", aes(label = format_label(..y..))) +  # Display mean value
   scale_y_continuous(labels = scales::number_format(accuracy = 1, scale = 1e-3, suffix = "k"), breaks = seq(0, 164000, by = 15000)) +  # Format y-axis labels
   theme_minimal()
 ```
 
-After analyzing the violin plot, I have made the following observations:
+I have analyzed the violin plot and made the following observations:
 
-* The size of the company has an impact on the average salary, with medium and large companies offering better compensation than small companies.
+* The size of a company has an impact on the average salary with medium and large companies offering better compensation than small ones.
 
-* It is worth noting that the average salary for medium-sized companies seems better than that of large-sized companies. However, it is important to keep in mind that this plot does not take into account other factors such as the location of the company. Since the data has more entries from the United States which is the country with the highest average salary, the proportion of medium and large companies in the United States might be masking this average.
-  
+* The average salary for medium-sized companies is higher than that of large-sized companies. It is worth noting that this plot does not consider other factors such as company location. For example, the United States (the highest average salary overall) has more medium-sized entries in the data than large-sized.
+
 ## How does the work setting influence the Entry-level Data Analyst's salary?
 
 ```{r}
+
+# Calculate averages by experience level
+averages <- data_analyst_entry %>%
+  group_by(work_setting) %>%
+  summarise(avg_salary = mean(salary_in_usd))
+
 # Create a violin plot with statistics
 ggplot(data_analyst_entry, aes(x = work_setting, y = salary_in_usd, fill = work_setting)) +
   geom_violin() +
   geom_boxplot(width = 0.2, fill = "white", color = "darkgrey", outlier.shape = NA) +
   labs(title = "The violin plot Salary: Entry-level Data Analysis category", subtitle = "Grouped by Work Setting", x = "Work Setting", y = "Salary (USD)") +
-   stat_summary(fun.data = mean_cl_normal, geom = "text", size = 3, color = "black", fontface = "bold", aes(label = format_label(..y..))) +  # Display mean value
+  geom_text(data = averages, aes(x = work_setting, y = avg_salary, label = scales::number_format(scale = 1e-3, accuracy = 1, suffix = "k")(avg_salary)), color = "black", size = 3, fontface = "bold") +  # Display averages as text labels
   scale_y_continuous(labels = scales::number_format(accuracy = 1, scale = 1e-3, suffix = "k"), breaks = seq(0, 165000, by = 10000)) +  # Format y-axis labels
   theme_minimal()
 ```
@@ -507,15 +523,15 @@ Based on the results of the heat map, we can make the following observations:
 
 This section presents the key insights that address the business questions.
 
-- The correlation between experience level and salary is significant. The average salary tends to increase with experience level. For example, professionals in "Machine Learning and AI" witness substantial salary increases ranging from $93k (entry-level) to $207k (executive).
+- The correlation between experience level and salary is significant. The average salary tends to increase with experience level. For example, professionals in "Machine Learning and AI" witness substantial salary increases ranging from \$93k (entry-level) to \$207k (executive).
 
 - The top five well-paid data-related jobs are "Machine Learning and AI," "Data Science and Research," "Data Engineering," and "Leadership and Management."
 
 - Although "BI and Visualization" commands a higher average salary than "Data Analysis," these categories often share similar technical skills and responsibilities.
 
-- The United States has the best salaries compared to other countries in all job categories, especially for the "Data Analysis" category. The top three countries to start a career as an entry-level Data Analyst are the United States, the United Kingdom, and Germany, with salaries of $77k, $58k, and $57k, respectively. It is worth noting that we are not taking into account the cost of living in each country. To view the filtered data demographically, and according to other factors, please check the [Tableau Dashboard](https://public.tableau.com/app/profile/murilo.zangari/viz/JobsandSalariesinData-RelatedCareers/Dashboard1).
+- The United States has the best salaries compared to other countries in all job categories, especially for the "Data Analysis" category. The top three countries to start a career as an entry-level Data Analyst are the United States, the United Kingdom, and Germany, with salaries of \$77k, \$58k, and \$57k, respectively. It is worth noting that we are not taking into account the cost of living in each country. To view the filtered data demographically, and according to other factors, please check the [Tableau Dashboard](https://public.tableau.com/app/profile/murilo.zangari/viz/JobsandSalariesinData-RelatedCareers/Dashboard1).
 
-- Working in person or remotely has minimal impact on the average salary. For instance, an entry-level data analyst receives an average salary of $73k in person and $72k remotely. However, the dataset's limited representation of hybrid work settings warrants cautious interpretation.
+- Working in person or remotely has minimal impact on the average salary. For instance, an entry-level data analyst receives an average salary of \$73k in person and \$72k remotely. However, the dataset's limited representation of hybrid work settings warrants cautious interpretation.
 
 **Career Guidance:**
 

@@ -630,21 +630,20 @@ ggplot(summary_table, aes(x = experience_level, y = frequency, fill = experience
 ![](Jobs_Salary_Data_Science_files/figure-gfm/unnamed-chunk-19-1.png)<!-- -->
 
 ``` r
-# Create a violin plot with statistics
+# Calculate averages by experience level
+averages <- data_analyst %>%
+  group_by(experience_level) %>%
+  summarise(avg_salary = mean(salary_in_usd))
+
+# Plot
 ggplot(data_analyst, aes(x = experience_level, y = salary_in_usd, fill = experience_level)) +
   geom_violin() +
   geom_boxplot(width = 0.2, fill = "white", color = "darkgrey", outlier.shape = NA) +
+  geom_text(data = averages, aes(x = experience_level, y = avg_salary, label = scales::number_format(scale = 1e-3, accuracy = 1, suffix = "k")(avg_salary)), color = "black", size = 3, fontface = "bold") +  # Display averages as text labels
   labs(title = "The violin plot Salary: Data Analysis category", subtitle = "Grouped by Experience Level", x = "Experience Level", y = "Salary (USD)") +
-  stat_summary(fun.data = mean_cl_normal, geom = "text", size = 3, color = "black", fontface = "bold", aes(label = format_label(..y..))) +  # Display mean value
   scale_y_continuous(labels = scales::number_format(accuracy = 1, scale = 1e-3, suffix = "k"), breaks = seq(10000, 430000, by = 30000)) +  # Format y-axis labels
   theme_minimal()
 ```
-
-    ## Warning: The dot-dot notation (`..y..`) was deprecated in ggplot2 3.4.0.
-    ## ℹ Please use `after_stat(y)` instead.
-    ## This warning is displayed once every 8 hours.
-    ## Call `lifecycle::last_lifecycle_warnings()` to see where this warning was
-    ## generated.
 
 ![](Jobs_Salary_Data_Science_files/figure-gfm/unnamed-chunk-20-1.png)<!-- -->
 
@@ -711,41 +710,48 @@ company_size_order <- c("S", "M", "L")
 # Convert experience_level to a factor with a defined order
 data_analyst_entry$company_size <- factor(data_analyst_entry$company_size, levels = company_size_order)
 
+# Calculate averages by experience level
+averages <- data_analyst_entry %>%
+  group_by(company_size) %>%
+  summarise(avg_salary = mean(salary_in_usd))
+
 # Create a violin plot with statistics
 ggplot(data_analyst_entry, aes(x = company_size, y = salary_in_usd, fill = company_size)) +
   geom_violin() +
   geom_boxplot(width = 0.2, fill = "white", color = "darkgrey", outlier.shape = NA) +
+  geom_text(data = averages, aes(x = company_size, y = avg_salary, label = scales::number_format(scale = 1e-3, accuracy = 1, suffix = "k")(avg_salary)), color = "black", size = 3, fontface = "bold") +  # Display averages as text labels
   labs(title = "The violin plot Salary: Entry-level Data Analysis category", subtitle = " Grouped by Company Size", x = "Company Size", y = "Salary (USD)") +
-  stat_summary(fun.data = mean_cl_normal, geom = "text", size = 3, color = "black", fontface = "bold", aes(label = format_label(..y..))) +  # Display mean value
   scale_y_continuous(labels = scales::number_format(accuracy = 1, scale = 1e-3, suffix = "k"), breaks = seq(0, 164000, by = 15000)) +  # Format y-axis labels
   theme_minimal()
 ```
 
 ![](Jobs_Salary_Data_Science_files/figure-gfm/unnamed-chunk-23-1.png)<!-- -->
 
-After analyzing the violin plot, I have made the following observations:
+I have analyzed the violin plot and made the following observations:
 
-- The size of the company has an impact on the average salary, with
-  medium and large companies offering better compensation than small
-  companies.
+- The size of a company has an impact on the average salary with medium
+  and large companies offering better compensation than small ones.
 
-- It is worth noting that the average salary for medium-sized companies
-  seems better than that of large-sized companies. However, it is
-  important to keep in mind that this plot does not take into account
-  other factors such as the location of the company. Since the data has
-  more entries from the United States which is the country with the
-  highest average salary, the proportion of medium and large companies
-  in the United States might be masking this average.
+- The average salary for medium-sized companies is higher than that of
+  large-sized companies. It is worth noting that this plot does not
+  consider other factors such as company location. For example, the
+  United States (the highest average salary overall) has more
+  medium-sized entries in the data than large-sized.
 
 ## 7.5 How does the work setting influence the Entry-level Data Analyst’s salary?
 
 ``` r
+# Calculate averages by experience level
+averages <- data_analyst_entry %>%
+  group_by(work_setting) %>%
+  summarise(avg_salary = mean(salary_in_usd))
+
 # Create a violin plot with statistics
 ggplot(data_analyst_entry, aes(x = work_setting, y = salary_in_usd, fill = work_setting)) +
   geom_violin() +
   geom_boxplot(width = 0.2, fill = "white", color = "darkgrey", outlier.shape = NA) +
   labs(title = "The violin plot Salary: Entry-level Data Analysis category", subtitle = "Grouped by Work Setting", x = "Work Setting", y = "Salary (USD)") +
-   stat_summary(fun.data = mean_cl_normal, geom = "text", size = 3, color = "black", fontface = "bold", aes(label = format_label(..y..))) +  # Display mean value
+  geom_text(data = averages, aes(x = work_setting, y = avg_salary, label = scales::number_format(scale = 1e-3, accuracy = 1, suffix = "k")(avg_salary)), color = "black", size = 3, fontface = "bold") +  # Display averages as text labels
   scale_y_continuous(labels = scales::number_format(accuracy = 1, scale = 1e-3, suffix = "k"), breaks = seq(0, 165000, by = 10000)) +  # Format y-axis labels
   theme_minimal()
 ```
