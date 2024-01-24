@@ -11,6 +11,8 @@ output:
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
+# Introduction
+
 This document is a case study prepared as part of the Google Data Analytics Capstone. It follows the six steps of the data analysis process, which are as follows: ask, prepare, process, analyze, share, and act.
 
 This report comprises the following elements: 
