@@ -22,8 +22,8 @@ Jobs and Salaries in Data-Related Careers
   - [6.5 How does the work setting influence the Entry-level Data
     Analyst’s
     salary?](#65-how-does-the-work-setting-influence-the-entry-level-data-analysts-salary)
-  - [6.6 Scenario: Data Analysts profession in the United
-    States](#66-scenario-data-analysts-profession-in-the-united-states)
+  - [6.6 Scenario: Data Analysis career in the United
+    States](#66-scenario-data-analysis-career-in-the-united-states)
 - [7 Key Insights and
   Recommendations:](#7-key-insights-and-recommendations)
 
@@ -754,7 +754,7 @@ or remotely, with both having an average of 72-73k. However, the average
 salary is lower in a hybrid working setting, as shown in the
 visualization.
 
-## 6.6 Scenario: Data Analysts profession in the United States
+## 6.6 Scenario: Data Analysis career in the United States
 
 To eliminate salary differences between countries and ensure a fair
 comparison, I specifically analyzed the United States. The United States
@@ -786,7 +786,7 @@ ggplot(summary_table, aes(x = experience_level, y = company_setting, fill = aver
   geom_tile(color = "white", linewidth = 0.5) +  # Add borders to tiles
   geom_text(aes(label = scales::number_format(accuracy = 1, scale = 1e-3, suffix = "k")(average_salary)), vjust = 1, size = 3, fontface = "bold") +
   scale_fill_gradient(low = "yellow", high = "blue", name = "Average Salary in USD", labels = scales::number_format(accuracy = 1, scale = 1e-3, suffix = "k")) +  # Customize the color scale
-  labs(title = "The salary of the Data Analyst in the US", subtitle = "by experience level, company size and work setting",
+  labs(title = "Average Salary: Data Analysis category in the United States", subtitle = "grouped by experience level, company size and work setting",
        x = "Experience Level",
        y = "Company size / Work setting") +
   theme_minimal()  # Use a minimal theme 

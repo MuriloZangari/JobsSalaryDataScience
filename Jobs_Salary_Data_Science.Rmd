@@ -457,7 +457,7 @@ ggplot(data_analyst_entry, aes(x = work_setting, y = salary_in_usd, fill = work_
 
  There is no significant difference in salary between working in-person or remotely, with both having an average of 72-73k. However, the average salary is lower in a hybrid working setting, as shown in the visualization.
 
-## Scenario: Data Analysts profession in the United States
+## Scenario: Data Analysis career in the United States
 
 To eliminate salary differences between countries and ensure a fair comparison, I specifically analyzed the United States. The United States had the highest number of entries in the data set, accounting for 86.8% of the total.
 
@@ -487,7 +487,7 @@ ggplot(summary_table, aes(x = experience_level, y = company_setting, fill = aver
   geom_tile(color = "white", linewidth = 0.5) +  # Add borders to tiles
   geom_text(aes(label = scales::number_format(accuracy = 1, scale = 1e-3, suffix = "k")(average_salary)), vjust = 1, size = 3, fontface = "bold") +
   scale_fill_gradient(low = "yellow", high = "blue", name = "Average Salary in USD", labels = scales::number_format(accuracy = 1, scale = 1e-3, suffix = "k")) +  # Customize the color scale
-  labs(title = "The salary of the Data Analyst in the US", subtitle = "by experience level, company size and work setting",
+  labs(title = "Average Salary: Data Analysis category in the United States", subtitle = "grouped by experience level, company size and work setting",
        x = "Experience Level",
        y = "Company size / Work setting") +
   theme_minimal()  # Use a minimal theme 
