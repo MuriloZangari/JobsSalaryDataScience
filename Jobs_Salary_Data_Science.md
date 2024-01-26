@@ -10,16 +10,15 @@ Jobs and Salaries in Data-Related Careers
 - [5 Cleaning steps](#5-cleaning-steps)
 - [6 Preliminary statistics](#6-preliminary-statistics)
 - [7 Analysis and Visuals](#7-analysis-and-visuals)
-  - [7.1 Average salary x `job_category` x
-    `experience level`](#71-average-salary-x-job_category-x-experience-level)
+  - [7.1 Average salary x job category x experience
+    level](#71-average-salary-x-job-category-x-experience-level)
   - [7.2 Exploring the Entry-level Data Analysis
-    category](#72-exploring-the-entry-level-data-analysis-category)
-  - [7.3 Where does the Entry-level Data Analysis job category have the
-    best
-    salaries?](#73-where-does-the-entry-level-data-analysis-job-category-have-the-best-salaries)
+    subgroup](#72-exploring-the-entry-level-data-analysis-subgroup)
+  - [7.3 Where does the Entry-level Data Analysis subgroup have the best
+    salaries?](#73-where-does-the-entry-level-data-analysis-subgroup-have-the-best-salaries)
   - [7.4 How does the company size influence the Entry-level Data
-    Analysis
-    salary?](#74-how-does-the-company-size-influence-the-entry-level-data-analysis-salary)
+    Analyst’s
+    salary?](#74-how-does-the-company-size-influence-the-entry-level-data-analysts-salary)
   - [7.5 How does the work setting influence the Entry-level Data
     Analyst’s
     salary?](#75-how-does-the-work-setting-influence-the-entry-level-data-analysts-salary)
@@ -177,23 +176,24 @@ glimpse(data_df) # I prefer the glimpse function to show a description/preview
 
 # 5 Cleaning steps
 
+This section presents the cleaning steps: checking for duplicates and
+dealying with empty values
+
 - **Verifying the number of duplicates**
 
 ``` r
 # Check for duplicates
-duplicate_rows <- data_df[duplicated(data_df), ]
+duplicate_rows <- data_df[duplicated(data_df), ] #using the duplicated() function to identify duplicate rows
+#print(duplicate_rows)
 
-# Print the number of duplicates
-num_duplicates <- sum(duplicated(data_df))
-cat("Number of duplicate rows:", num_duplicates, "\n")
+# To count the number of duplicate rows using the nrow() function
+num_duplicates <- nrow(duplicate_rows)
+
+# Print the number of duplicate rows
+cat("Number of duplicate rows: ", num_duplicates, "\n")
 ```
 
-    ## Number of duplicate rows: 4014
-
-``` r
-# I am not going to remove duplicates
-#data_df <- data_df[!duplicated(data_df), ]
-```
+    ## Number of duplicate rows:  4014
 
 - The data set contains 4,014 duplicates. After consulting other
   [Kaggle’s
@@ -205,39 +205,29 @@ cat("Number of duplicate rows:", num_duplicates, "\n")
 
 - **Checking and dealing with empty values**
 
-``` r
-# Create a tibble summarizing the number of empty values for each column
-summary_table <- tibble(
-  Column = names(data_df),
-  Empty_Values = colSums(is.na(data_df))
-)
+Couting the empty values for each column (attribute)
 
-# Print the summary table
-print(summary_table)
+``` r
+# Using colSums(is.na()) function to get the count of NA values for each column
+empty_values_count <- colSums(is.na(data_df))
+
+# Print the number of empty values for each column
+print(empty_values_count)
 ```
 
-    ## # A tibble: 12 × 2
-    ##    Column             Empty_Values
-    ##    <chr>                     <dbl>
-    ##  1 work_year                     0
-    ##  2 job_title                     0
-    ##  3 job_category                  0
-    ##  4 salary_currency               0
-    ##  5 salary                        0
-    ##  6 salary_in_usd                 0
-    ##  7 employee_residence            0
-    ##  8 experience_level              0
-    ##  9 employment_type               0
-    ## 10 work_setting                  0
-    ## 11 company_location              0
-    ## 12 company_size                  0
+    ##          work_year          job_title       job_category    salary_currency 
+    ##                  0                  0                  0                  0 
+    ##             salary      salary_in_usd employee_residence   experience_level 
+    ##                  0                  0                  0                  0 
+    ##    employment_type       work_setting   company_location       company_size 
+    ##                  0                  0                  0                  0
 
 - Great! The data set has no empty values.
 
 # 6 Preliminary statistics
 
-In this section, I present preliminary statistics focused on the
-proportion (distribution) of the unique values for each attribute.
+In this section, I present preliminary statistics on the distribution of
+unique values for the main attributes.
 
 - **Analyzing `work_year`: unique values and frequency**
 
@@ -301,8 +291,8 @@ proportions. It is crucial to take note of this distribution because it
 directly affects statistical calculations and metrics, such as the
 average.
 
-For instance, the `'job_category' = "Data Science and Research"` covers
-the following `job_titles`:
+For instance, the `'Data Science and Research'` category covers the
+following `job_titles`:
 
 ``` r
 # Create a tibble counting frequency for 'Data Science and Research' job_category grouped by 'job_title'
@@ -341,11 +331,11 @@ print(data_science_tibble)
     ## 22             Data Science Tech Lead         1            0.0
     ## 23     Managing Director Data Science         1            0.0
 
-The table presented above shows that the
-`'job_category' == "Data Science and Researcher"` encompasses **23**
-different job_titles.
+The table presented above shows that the `'Data Science and Researcher'`
+category encompasses **23** different `job_titles`.
 
-The `'job category' = "Data Analysis"` covers **14** job_titles:
+The `'Data Analysis'` category covers **14** `job_titles` presented in
+the following.
 
 ``` r
 # Create a tibble counting frequency for the 'Data Analysis' job_category grouped by 'job_title'
@@ -375,8 +365,8 @@ print(data_science_tibble)
     ## 13             Principal Data Analyst         2            0.0
     ## 14                 Sales Data Analyst         1            0.0
 
-It is interesting to see the different job titles related to Data
-Analysis. These jobs can have different titles but the required skills
+It is interesting to note the different job titles related to ‘Data
+Analysis’. These jobs can have different titles but the required skills
 and responsibilities are often the same.
 
 - **Analyzing the `experience_level`: unique values and frequency**
@@ -391,9 +381,7 @@ experience_levels_order <- c("Entry-level", "Mid-level", "Senior", "Executive")
 
 # Convert experience_level to a factor with a defined order
 data_df$experience_level <- factor(data_df$experience_level, levels = experience_levels_order)
-```
 
-``` r
 exp_level <- data_df %>% 
   count(experience_level) %>%
  # arrange(desc(n)) %>%
@@ -444,7 +432,7 @@ the most sought-after and commonly available type of employment.
 
 ``` r
 result_tibble <- data_df %>% #create a summary table 
-  count(company_location, salary_currency) %>%
+  count(company_location) %>%
   arrange(desc(n)) %>%
   rename(frequency = n) %>% #rename the column name 
   mutate('%' = round(frequency / total_rows * 100, 1)) #create the column with the percentage
@@ -452,33 +440,30 @@ result_tibble <- data_df %>% #create a summary table
 print(head(result_tibble,10))
 ```
 
-    ##    company_location salary_currency frequency    %
-    ## 1     United States             USD      8124 86.8
-    ## 2    United Kingdom             GBP       340  3.6
-    ## 3            Canada             USD       185  2.0
-    ## 4             Spain             EUR       106  1.1
-    ## 5    United Kingdom             USD       103  1.1
-    ## 6           Germany             EUR        61  0.7
-    ## 7            Canada             CAD        38  0.4
-    ## 8            France             EUR        37  0.4
-    ## 9          Portugal             EUR        21  0.2
-    ## 10      Netherlands             EUR        17  0.2
+    ##    company_location frequency    %
+    ## 1     United States      8132 86.9
+    ## 2    United Kingdom       449  4.8
+    ## 3            Canada       226  2.4
+    ## 4             Spain       113  1.2
+    ## 5           Germany        72  0.8
+    ## 6            France        50  0.5
+    ## 7         Australia        24  0.3
+    ## 8          Portugal        24  0.3
+    ## 9       Netherlands        21  0.2
+    ## 10           Brazil        17  0.2
 
 The table presented above shows that the United States is the most
-frequent company location, being 86.8% of the total. The column
-`salary_in_usd` represents the annual gross salary converted to USD.
-This uniform currency conversion aids in global salary comparisons and
-analyses.
+frequent company location, being 86.8% of the total.
 
 - **Analyzing the `company_size` and `work_setting`: unique values and
   frequency**
 
-The `company_size` column encompasses three distinct values: `S`
-(small), `M` (medium), and `L` (large). Simultaneously, the
+The `company_size` column encompasses three distinct values: `'S'`
+(small), `'M'` (medium), and `'L'` (large). Simultaneously, the
 `work_setting` column features three unique values within the range of
-`[Hybrid, In-person, Remote]`. I illustrate the distribution of these
-columns through a **pivot table**, wherein I reconfigure the unique
-values of the `work_setting` column into new individual columns.
+`['Hybrid', 'In-person', 'Remote']`. I illustrate the distribution of
+these columns through a **pivot table**, wherein I reconfigure the
+unique values of the `work_setting` column into new individual columns.
 
 ``` r
 summary_table <- data_df %>% #create a summary table
@@ -499,9 +484,9 @@ print(summary_table)
 
 The table presented above shows that the medium company size “M” covers
 90% of the entries. In regards to `work_setting`, the most popular still
-is `"In-person"` covering 61% of the total, followed by `Remote` with
-36.7%. Overall, the combination (subgroup) `"M" AND In-person` has 5.314
-rows, covering 56.8% of the total.
+is `'In-person'` covering 61% of the total, followed by `'Remote'` with
+36.7%. Overall, the combination (subgroup) `'M' AND 'In-person'` has
+5.314 rows, covering 56.8% of the total.
 
 # 7 Analysis and Visuals
 
@@ -521,7 +506,7 @@ in-depth exploration, feel free to explore the interactive [Jobs
 Salaries in Data-related Careers
 Dashboard](https://public.tableau.com/views/JobsandSalariesinData-RelatedCareers/Dashboard1?:language=en-GB&:display_count=n&:origin=viz_share_link).
 
-## 7.1 Average salary x `job_category` x `experience level`
+## 7.1 Average salary x job category x experience level
 
 For this study, I focused solely on individuals who are employed
 full-time, as this represents 99.5% of the total sample. This employment
@@ -535,8 +520,8 @@ points.
 data_full_time <- data_df[data_df$employment_type == 'Full-time',]
 ```
 
-Creating a tibble with average annual salary grouped by `job_category`
-and `experience_level`.
+Creating a summary table with average annual salary grouped by
+`job_category` and `experience_level`.
 
 ``` r
 # Create a tibble that represents the average salary grouped by job_category and experience level
@@ -544,9 +529,6 @@ summary_table <- data_full_time %>%
   group_by(job_category, experience_level) %>%
   summarise(average_salary = mean(salary_in_usd), .groups = "drop")
   #spread(experience_level, average_salary)
-
-# Print the tibble
-#print(summary_table)
 ```
 
 Creating a heatmap with the average annual salary in USD.
@@ -570,7 +552,7 @@ ggplot(summary_table, aes(x = experience_level, y = job_category, fill = average
   theme_minimal()  # Use a minimal theme 
 ```
 
-![](Jobs_Salary_Data_Science_files/figure-gfm/unnamed-chunk-16-1.png)<!-- -->
+![](Jobs_Salary_Data_Science_files/figure-gfm/unnamed-chunk-15-1.png)<!-- -->
 
 The heatmap displays the average salary with a colour scale ranging from
 yellow (lowest) to blue (highest). Each cell contains the average salary
@@ -580,29 +562,24 @@ Based on the heat map results, the following observations can be made:
 
 - The salary increases with experience level, except for the ‘Data
   Analysis’ category where the ‘Senior’ level has an average salary of
-  120k and the ‘Executive’ level has an average salary of 110k. For more
-  detailed information about the ‘Data Analyst’ job category, please
-  refer to the next section.
+  \\120k and the ‘Executive’ level has an average salary of \\110k. For
+  more detailed information about the ‘Data Analyst’ job category,
+  please refer to the next section.
 
 - The average salary for entry-level positions is highest for the ‘Data
-  Science and Research’ category with 101k, followed by ‘Data
-  Engineering’ with 96k. However, the entry-level salary for ‘Data
-  Analysis’ is only 70k, which is 31k less than the ‘Data Science and
-  Research’ category. This indicates a significant difference.
+  Science and Research’ category with \\101k, followed by ‘Data
+  Engineering’ with \\96k. However, the entry-level salary for ‘Data
+  Analysis’ is only \\70k, which is \\31k less than the ‘Data Science
+  and Research’ category. This indicates a significant difference.
 
 - The highest salaries are represented by the ‘Executive’ level
-  positions of ‘Machine Learning AI’ with 207k and ‘Data Science and
-  Research’ with 204k.
+  positions of ‘Machine Learning AI’ with \\207k and ‘Data Science and
+  Research’ with \\204k.
 
-## 7.2 Exploring the Entry-level Data Analysis category
+## 7.2 Exploring the Entry-level Data Analysis subgroup
 
-This section focuses on the **Entry-level Data Analysis subgroup** as it
-pertains to the business task.
-
-``` r
-#filtering the data frame having only the data analysis category
-data_analyst <- data_full_time[data_full_time$job_category == 'Data Analysis',]
-```
+This section focuses on the **‘Entry-level Data Analysis subgroup’** as
+it pertains to the business task.
 
 How do different factors, such as experience level, company location,
 company size, and work setting, impact variations in salary?
@@ -611,6 +588,20 @@ The visualization below displays the number of times each unique value
 of `experience_level` appears in for the filtered data.
 
 ``` r
+#filtering the data frame having only the data analysis category
+data_analyst <- data_full_time[data_full_time$job_category == 'Data Analysis',]
+
+# Define the order of experience levels
+experience_levels_order <- c("Entry-level", "Mid-level", "Senior", "Executive")
+
+# Convert experience_level to a factor with a defined order
+data_full_time$experience_level <- factor(data_full_time$experience_level, levels = experience_levels_order)
+
+# Custom function to format the label
+format_label <- function(x) {
+  ifelse(abs(x) >= 1000, sprintf("%.0fk", x/1000), sprintf("%.0f", x))
+}
+
 summary_table <- data_analyst %>%  # create a summary tibble
   count(experience_level) %>% 
   rename(frequency = n) 
@@ -627,7 +618,7 @@ ggplot(summary_table, aes(x = experience_level, y = frequency, fill = experience
   theme_minimal()
 ```
 
-![](Jobs_Salary_Data_Science_files/figure-gfm/unnamed-chunk-19-1.png)<!-- -->
+![](Jobs_Salary_Data_Science_files/figure-gfm/unnamed-chunk-16-1.png)<!-- -->
 
 ``` r
 # Calculate averages by experience level
@@ -645,17 +636,17 @@ ggplot(data_analyst, aes(x = experience_level, y = salary_in_usd, fill = experie
   theme_minimal()
 ```
 
-![](Jobs_Salary_Data_Science_files/figure-gfm/unnamed-chunk-20-1.png)<!-- -->
+![](Jobs_Salary_Data_Science_files/figure-gfm/unnamed-chunk-17-1.png)<!-- -->
 
 According to the table presented above, the salary incrementally rises
-as one progresses from the “Entry-level” to the “Senior” position.
-Interestingly, despite being a more higher position, the “Executive”
-role has a lower average salary than the “Senior” position. This
+as one progresses from the ‘Entry-level’ to the ‘Senior’ position.
+Interestingly, despite being a more higher position, the ‘Executive’
+role has a lower average salary than the ‘Senior’ position. This
 unexpected result may be due to the disproportionate representation of
-the “Senior” position in the database, which appears nine times more
-frequently than the “Executive” position.
+the ‘Senior’ position in the database, which appears nine times more
+frequently than the ‘Executive’ position.
 
-## 7.3 Where does the Entry-level Data Analysis job category have the best salaries?
+## 7.3 Where does the Entry-level Data Analysis subgroup have the best salaries?
 
 - Filtering the data frame
 
@@ -686,22 +677,22 @@ ggplot(summary_table, aes(x = reorder(company_location, -avg_salary_entry_level)
         )
 ```
 
-![](Jobs_Salary_Data_Science_files/figure-gfm/unnamed-chunk-22-1.png)<!-- -->
+![](Jobs_Salary_Data_Science_files/figure-gfm/unnamed-chunk-19-1.png)<!-- -->
 
 Based on the bar chart results, the following observations can be made:
 
-The average salary in the United States is significantly higher at
+The average salary in the ‘United States’ is significantly higher at
 \$77,000 compared to other countries. Luxembourg and the United Kingdom
 follow in second and third place with \$59,000 and \$58,000
 respectively, while Germany ranks fourth with \$54,000.
 
-Note the number of entries for each country and the “Entry-level Data
-Analysis” subgroup in the dataset. For example, the United States has
+Note the number of entries for each country and the ‘Entry-level Data
+Analysis’ subgroup in the dataset. For example, the United States has
 103 entries, the United Kingdom has 10, Germany has 2, and Luxembourg
 has 1. This could affect the generalization of results, and it will be
 interesting to see if the outcome changes after updating the data.
 
-## 7.4 How does the company size influence the Entry-level Data Analysis salary?
+## 7.4 How does the company size influence the Entry-level Data Analyst’s salary?
 
 ``` r
 # Define the order of company size
@@ -725,17 +716,18 @@ ggplot(data_analyst_entry, aes(x = company_size, y = salary_in_usd, fill = compa
   theme_minimal()
 ```
 
-![](Jobs_Salary_Data_Science_files/figure-gfm/unnamed-chunk-23-1.png)<!-- -->
+![](Jobs_Salary_Data_Science_files/figure-gfm/unnamed-chunk-20-1.png)<!-- -->
 
 I have analyzed the violin plot and made the following observations:
 
-- The size of a company has an impact on the average salary with medium
-  and large companies offering better compensation than small ones.
+- The size of a company has an impact on the average salary with
+  ‘medium’ and ‘large’ companies offering better compensation than small
+  ones.
 
 - The average salary for medium-sized companies is higher than that of
   large-sized companies. It is worth noting that this plot does not
   consider other factors such as company location. For example, the
-  United States (the highest average salary overall) has more
+  ‘United States’ (the highest average salary overall) has more
   medium-sized entries in the data than large-sized.
 
 ## 7.5 How does the work setting influence the Entry-level Data Analyst’s salary?
@@ -756,11 +748,11 @@ ggplot(data_analyst_entry, aes(x = work_setting, y = salary_in_usd, fill = work_
   theme_minimal()
 ```
 
-![](Jobs_Salary_Data_Science_files/figure-gfm/unnamed-chunk-24-1.png)<!-- -->
+![](Jobs_Salary_Data_Science_files/figure-gfm/unnamed-chunk-21-1.png)<!-- -->
 
 There is no significant difference in salary between working in-person
-or remotely, with both having an average of 72-73k. However, the average
-salary is lower in a hybrid working setting, as shown in the
+or remotely, with both having an average of \\72-\\73k. However, the
+average salary is lower in a hybrid working setting, as shown in the
 visualization.
 
 ## 7.6 Scenario: Data Analysis career in the United States
@@ -801,7 +793,7 @@ ggplot(summary_table, aes(x = experience_level, y = company_setting, fill = aver
   theme_minimal()  # Use a minimal theme 
 ```
 
-![](Jobs_Salary_Data_Science_files/figure-gfm/unnamed-chunk-26-1.png)<!-- -->
+![](Jobs_Salary_Data_Science_files/figure-gfm/unnamed-chunk-23-1.png)<!-- -->
 
 Based on the results of the heat map, we can make the following
 observations:
@@ -809,7 +801,7 @@ observations:
 - Entry-level employees working in small companies with a hybrid work
   setup receive the lowest average salary. On the other hand, those
   working in medium-sized companies in person earn an average salary of
-  82k, which is the highest for entry-level positions.
+  \\82k, which is the highest for entry-level positions.
 
 - Senior Data Analysts working in large companies in-person receive the
   highest average salary.
@@ -826,22 +818,22 @@ questions.
 - The correlation between experience level and salary is significant.
   The average salary tends to increase with experience level. For
   example, professionals in “Machine Learning and AI” witness
-  substantial salary increases ranging from \$93k (entry-level) to
-  \$207k (executive).
+  substantial salary increases ranging from \\93k (entry-level) to
+  \\207k (executive).
 
-- The top five well-paid data-related jobs are “Machine Learning and
-  AI,” “Data Science and Research,” “Data Engineering,” and “Leadership
-  and Management.”
+- The top five well-paid data-related jobs are ‘Machine Learning and
+  AI’, ‘Data Science and Research’, ‘Data Engineering’, and ‘Leadership
+  and Management’.
 
-- Although “BI and Visualization” commands a higher average salary than
-  “Data Analysis,” these categories often share similar technical skills
-  and responsibilities.
+- Although ‘BI and Visualization’ category commands a higher average
+  salary than ‘Data Analysis’ category, they both often share similar
+  technical skills and responsibilities.
 
 - The United States has the best salaries compared to other countries in
-  all job categories, especially for the “Data Analysis” category. The
+  all job categories, especially for the ‘Data Analysis’ category. The
   top three countries to start a career as an entry-level Data Analyst
   are the United States, the United Kingdom, and Germany, with salaries
-  of \$77k, \$58k, and \$57k, respectively. It is worth noting that we
+  of \$77k, \\58k, and \\57k, respectively. It is worth noting that we
   are not taking into account the cost of living in each country. To
   view the filtered data demographically, and according to other
   factors, please check the [Tableau
@@ -849,7 +841,7 @@ questions.
 
 - Working in person or remotely has minimal impact on the average
   salary. For instance, an entry-level data analyst receives an average
-  salary of \$73k in person and \$72k remotely. However, the dataset’s
+  salary of \\73k in person and \\72k remotely. However, the dataset’s
   limited representation of hybrid work settings warrants cautious
   interpretation.
 
