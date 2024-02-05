@@ -10,26 +10,24 @@ output:
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
-
-# Introduction
-
-This document is a case study prepared as part of the Google Data Analytics Capstone. It follows the six steps of the data analysis process, which are as follows: ask, prepare, process, analyze, share, and act.
-
-This report comprises the following elements: 
-
-  * A clear statement of the business task and its purpose.
-  * A comprehensive description of the data sources utilized.
-  * Documentation of the cleaning and data manipulation phase.
-  * The analysis with supporting visualizations and key findings.
-  * Valuable insights and additional deliverables for further exploration.
-
 # Purpose of the Analysis
 
-  In the dynamic and rapidly evolving landscape of data-related careers, understanding the scenario of job roles and salary trends is crucial for professionals seeking to navigate their career paths. By exploring key aspects such as the different job roles, location, experience level, and average salary, the study aims to provide a roadmap and valuable insights for aspiring entry-level data-related professions.
+ In the dynamic and rapidly evolving landscape of data-related careers, understanding the scenario of job roles and salary trends is crucial for professionals seeking to navigate their career paths. By exploring key aspects such as the different job roles, compmany location, experience level, and average salary, the study aims to provide a roadmap and valuable insights for aspiring entry-level data-related professions.
+ 
+ The case study follows the six steps of the data analysis process: ask, prepare, process, analyze, share, and act. The document is organized as follows:
 
-* **Business Task**: A meaningful salary overview in Data-related careers around the globe, including the most enticing job roles, and career perspectives, with a focus on the Entry-level Data Analysis profession. 
+  * **A clear statement of the business task and its purpose.**
+  * **A comprehensive description of the data sources utilized.**
+  * **Documentation of the cleaning and data manipulation phase.**
+  * **The analysis with supporting visualizations and key findings.**
+  * **Valuable insights and additional deliverables for further exploration.**
 
-* **Key Stakeholder:** In this case study, the primary stakeholder is the data analyst conducting the analysis. In the following, I list several guiding questions to be answered with the analysis:
+## Business Task and Key Stakeholder
+
+The business task is to obtain a meaningful salary overview in Data-related careers around the globe, including the most enticing job roles, and career perspectives, with a focus on the Entry-level Data Analysis profession. 
+
+The primary stakeholder is the data analyst conducting the analysis. In the following, I list several guiding questions to be answered with the analysis:
+
   * How the data is organized?
   * Are there issues with bias or credibility in this data?
   * What steps have you taken to ensure that your data is clean?
@@ -81,19 +79,21 @@ glimpse(data_df) # I prefer the glimpse function to show a description/preview
 
 ```
 
-* The data set has 9,355 rows and 12 columns.
+* The data set contains 9,355 rows and 12 columns.
 
-* The data set seems to be reliable (complete and unbiased), original, and comprehensive. It contains all the critical information needed to answer the business task.
+* The data set seems to be reliable (complete and unbiased), original, comprehensive, and it contains all the critical information needed to answer the business task.
 
-* The data is current (collected through the last three years), and relevant to the task at hand.
+* The data set is current (collected through the last three years), and relevant to the task at hand.
   
 * The data will remain unchanged from its initial collection to its analysis and reporting.
 
 # Cleaning steps
 
-This section presents the cleaning steps: checking for duplicates and dealying with empty values
+This section presents the cleaning steps:
 
 * **Verifying the number of duplicates**
+
+I have used the functions `duplicated()` and `nrow()` to count the number of duplicates.
   
 ```{r}
 # Check for duplicates
@@ -106,7 +106,7 @@ num_duplicates <- nrow(duplicate_rows)
 # Print the number of duplicate rows
 cat("Number of duplicate rows: ", num_duplicates, "\n")
 ```
-  * The data set contains 4,014 duplicates. After consulting other [Kaggle's notebooks](https://www.kaggle.com/datasets/hummaamqaasim/jobs-in-data/code), I have decided to maintain the total number of rows, because it seems they do not represent duplicates, but different entries which had the same responses. These duplicates make sense since a specific position/role might have the same salary in a certain country.
+The data set contains 4,014 duplicates. After consulting other [Kaggle's notebooks](https://www.kaggle.com/datasets/hummaamqaasim/jobs-in-data/code) using the same data set, I have decided not to remove the duplicates, because it seems they do not represent duplicates but different entries from the survey which had the same responses. The duplicates make sense since a specific position/role might have the same work setting and salary in a certain country.
  
 * **Checking and dealing with empty values**
 
@@ -192,7 +192,7 @@ It is interesting to note the different job titles related to 'Data Analysis'. T
 
 * **Analyzing the `experience_level`: unique values and frequency**
 
-First, I convert the `experience_level` unique values into a factor with a defined order. This scheme ensures that its values will always appear in a certain order.
+First, I have converted the `experience_level` unique values into a factor with a defined order. This scheme ensures that its values will always appear in a certain order.
 
 ```{r}
 # Define the order of experience levels
@@ -243,7 +243,7 @@ The table presented above shows that the United States is the most frequent comp
 
 * **Analyzing the `company_size` and `work_setting`: unique values and frequency**
 
-The `company_size` column encompasses three distinct values: `'S'` (small), `'M'` (medium), and `'L'` (large). Simultaneously, the `work_setting` column features three unique values within the range of `['Hybrid', 'In-person', 'Remote']`. I illustrate the distribution of these columns through a **pivot table**, wherein I reconfigure the unique values of the `work_setting` column into new individual columns.
+The `company_size` column encompasses three distinct values: `'S'` (small), `'M'` (medium), and `'L'` (large). The `work_setting` column features three unique values `['Hybrid', 'In-person', 'Remote']`. I have created a summary table to illustrate the distribution of these two columns in a form of a pivot table:
 
 ```{r}
 summary_table <- data_df %>% #create a summary table
@@ -258,13 +258,13 @@ The table presented above shows that the medium company size "M" covers 90% of t
 
 # Analysis and Visuals
 
-In this section, I have analyzed how certain columns influence average salary. I have used visualizations such as heatmaps and violin plots to show the correlations between the following factors: `job_category`, `company_location`, `experience_level`, `company_size`, and `work_setting`. Through these visualizations, I have highlighted the differences in average salary that arise due to these factors.
+In this section, I have analyzed how certain columns/variables impacts on the average salary. I have used visualizations such as heatmap and violin plot to show the correlations between `job_category`, `company_location`, `experience_level`, `company_size`, and `work_setting`.
   
-Moreover, to enhance the interactive exploration of this dataset, I have crafted a supplementary [Tableau Dashboard](https://public.tableau.com/views/JobsandSalariesinData-RelatedCareers/Dashboard1?:language=en-GB&:display_count=n&:origin=viz_share_link). This dynamic visualization incorporates the same dataset, offering an immersive experience with features like a map and filters. For an in-depth exploration, feel free to explore the interactive [Jobs Salaries in Data-related Careers Dashboard](https://public.tableau.com/views/JobsandSalariesinData-RelatedCareers/Dashboard1?:language=en-GB&:display_count=n&:origin=viz_share_link).
+Moreover, to enhance the interactive exploration of the dataset, I have crafted a supplementary [Tableau Dashboard](https://public.tableau.com/views/JobsandSalariesinData-RelatedCareers/Dashboard1?:language=en-GB&:display_count=n&:origin=viz_share_link). This dynamic visualization incorporates the same dataset, offering an immersive experience with features like a map and filters. For an in-depth exploration, feel free to explore the interactive [Jobs Salaries in Data-related Careers Dashboard](https://public.tableau.com/views/JobsandSalariesinData-RelatedCareers/Dashboard1?:language=en-GB&:display_count=n&:origin=viz_share_link).
 
 ## Average salary x job category x experience level
 
-For this study, I focused solely on individuals who are employed full-time, as this represents 99.5% of the total sample. This employment type is the most commonly searched for by individuals. Any other employment types, such as part-time or freelance, were noted but not included in the statistical analysis and were considered as outlined points.
+For this study, I focused solely on individuals who are employed full-time, as this represents 99.5% of the total sample. This employment type is the most commonly searched for by individuals. Any other employment types, such as part-time or freelance, were noted but not included in the statistical analysis.
 
 ```{r}
 #filtering the data frame having only the full-time employment type
@@ -317,7 +317,7 @@ Based on the heat map results, the following observations can be made:
   
 ## Exploring the Entry-level Data Analysis subgroup
 
-This section focuses on the **'Entry-level Data Analysis subgroup'** as it pertains to the business task.
+This section focuses on the **'Entry-level Data Analysis subgroup'** as it represents the scope of the business task.
 
 How do different factors, such as experience level, company location, company size, and work setting, impact variations in salary?
 
