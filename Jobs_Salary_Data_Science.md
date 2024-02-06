@@ -18,10 +18,10 @@ Jobs and Salaries in Data-Related Careers
   - [6.3 Where does the Entry-level Data Analysis subgroup have the best
     salaries?](#63-where-does-the-entry-level-data-analysis-subgroup-have-the-best-salaries)
   - [6.4 How does the company size influence the Entry-level Data
-    Analyst’s
+    Analysts
     salary?](#64-how-does-the-company-size-influence-the-entry-level-data-analysts-salary)
   - [6.5 How does the work setting influence the Entry-level Data
-    Analyst’s
+    Analysts
     salary?](#65-how-does-the-work-setting-influence-the-entry-level-data-analysts-salary)
   - [6.6 Scenario: Data Analysis career in the United
     States](#66-scenario-data-analysis-career-in-the-united-states)
@@ -33,7 +33,7 @@ Jobs and Salaries in Data-Related Careers
 In the dynamic and rapidly evolving landscape of data-related careers,
 understanding the scenario of job roles and salary trends is crucial for
 professionals seeking to navigate their career paths. By exploring key
-aspects such as the different job roles, compmany location, experience
+aspects such as the different job roles, company location, experience
 level, and average salary, the study aims to provide a roadmap and
 valuable insights for aspiring entry-level data-related professions.
 
@@ -42,8 +42,8 @@ prepare, process, analyze, share, and act. The document is organized as
 follows:
 
 - **A clear statement of the business task and its purpose.**
-- **A comprehensive description of the data sources utilized.**
-- **Documentation of the cleaning and data manipulation phase.**
+- **A comprehensive description of the data sources.**
+- **Documentation of the data manipulation and cleaning step**
 - **The analysis with supporting visualizations and key findings.**
 - **Valuable insights and additional deliverables for further
   exploration.**
@@ -73,9 +73,8 @@ analysis:
 The data is located at [ai-jobs.net](https://ai-jobs.net/salaries/2023/)
 and entitled “The Global AI, ML, Data Science Salary Index for 2023”
 which is based on internal data survey submissions and jobs with open
-salaries, as the authors describe the data. The data is processed and
-updated every week. You can contribute to them by submitting your salary
-info.
+salaries. The data is processed and updated every week. You can
+contribute to them by submitting your salary info.
 
 I have downloaded the data set from Hummaam Qaasim’s profile in
 [Kaggle](https://www.kaggle.com/datasets/hummaamqaasim/jobs-in-data),
@@ -250,8 +249,8 @@ print(data_work)
     ## 3      2021   197            2.1
     ## 4      2020    71            0.8
 
-The data has been populated from 2020 until 2023. Moreover, ‘2023’ is
-almost 79.7% of the total.
+The data has been populated from 2020 until 2023, being ‘2023’ 79.7% of
+the total.
 
 - **Analyzing `job_category` and `job_title`: unique values and
   frequency**
@@ -559,20 +558,17 @@ in thousands (k).
 Based on the heat map results, the following observations can be made:
 
 - The salary increases with experience level, except for the ‘Data
-  Analysis’ category where the ‘Senior’ level has an average salary of
-  \\120k and the ‘Executive’ level has an average salary of \\110k. For
-  more detailed information about the ‘Data Analyst’ job category,
-  please refer to the next section.
+  Analysis’ category where the ‘Senior’ has an average salary of \$120k
+  and the ‘Executive’ has \$110k.
 
-- The average salary for entry-level positions is highest for the ‘Data
-  Science and Research’ category with \\101k, followed by ‘Data
-  Engineering’ with \\96k. However, the entry-level salary for ‘Data
-  Analysis’ is only \\70k, which is \\31k less than the ‘Data Science
-  and Research’ category. This indicates a significant difference.
+- The highest average salary for an entry-level position belongs to the
+  ‘Data Science and Research’ category with \$101k, followed by ‘Data
+  Engineering’ with \$96k. The entry-level Data Analysis average salary
+  is \$70k, which is \$31k less than the ‘Data Science and Research’
+  category, which indicates a significant difference.
 
-- The highest salaries are represented by the ‘Executive’ level
-  positions of ‘Machine Learning AI’ with \\207k and ‘Data Science and
-  Research’ with \\204k.
+- The highest salaries are represented by the Executive Machine Learning
+  AI with \$207k and Executive Data Science and Research with \$204k.
 
 ## 6.2 Exploring the Entry-level Data Analysis subgroup
 
@@ -690,7 +686,7 @@ Analysis’ subgroup in the dataset. For example, the United States has
 has 1. This could affect the generalization of results, and it will be
 interesting to see if the outcome changes after updating the data.
 
-## 6.4 How does the company size influence the Entry-level Data Analyst’s salary?
+## 6.4 How does the company size influence the Entry-level Data Analysts salary?
 
 ``` r
 # Define the order of company size
@@ -728,7 +724,7 @@ I have analyzed the violin plot and made the following observations:
   ‘United States’ (the highest average salary overall) has more
   medium-sized entries in the data than large-sized.
 
-## 6.5 How does the work setting influence the Entry-level Data Analyst’s salary?
+## 6.5 How does the work setting influence the Entry-level Data Analysts salary?
 
 ``` r
 # Calculate averages by experience level
@@ -796,9 +792,9 @@ ggplot(summary_table, aes(x = experience_level, y = company_setting, fill = aver
 Based on the results of the heat map, we can make the following
 observations:
 
-- In regards to Entry-level Data Analysts, the lowest average salary is
-  represented by small companies with a hybrid work setup (\\55k). On
-  the other hand, the highest average salary is presented by
+- In regards to Entry-level Data Analysis subgroup, the lowest average
+  salary is represented by small companies with a hybrid work setup
+  (\\55k). On the other hand, the highest average salary is presented by
   medium-sized companies working in person with (\\82k).
 
 - Senior Data Analysts working in large companies in-person receive the
@@ -818,7 +814,7 @@ questions:
   category witness substantial salary increases ranging from \\93k
   (entry-level) to \\207k (executive).
 
-- From the 10 job categories, most well-paid data-related jobs are
+- From the 10 job categories, the most well-paid data-related jobs are
   ‘*Machine Learning and AI*’, ‘*Data Science and Research*’, ‘*Data
   Engineering*’, and ‘*Leadership and Management*’. This insight reveals
   that the ‘*Data Analysts*’ do not represent the most well-paid

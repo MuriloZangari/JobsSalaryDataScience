@@ -1,6 +1,6 @@
 ---
 title: "Jobs and Salaries in Data-Related Careers"
-subtitle: "Salary Trends and Insights: An Analysis of the Data Analysts Professional Career"
+subtitle: "Salary Trends and Insights: An Analysis of the Data Analyst Professional Career"
 output: 
   github_document:
     toc: true
@@ -12,13 +12,13 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 # Purpose of the Analysis
 
- In the dynamic and rapidly evolving landscape of data-related careers, understanding the scenario of job roles and salary trends is crucial for professionals seeking to navigate their career paths. By exploring key aspects such as the different job roles, compmany location, experience level, and average salary, the study aims to provide a roadmap and valuable insights for aspiring entry-level data-related professions.
+ In the dynamic and rapidly evolving landscape of data-related careers, understanding the scenario of job roles and salary trends is crucial for professionals seeking to navigate their career paths. By exploring key aspects such as the different job roles, company location, experience level, and average salary, the study aims to provide a roadmap and valuable insights for aspiring entry-level data-related professions.
  
  The case study follows the six steps of the data analysis process: ask, prepare, process, analyze, share, and act. The document is organized as follows:
 
   * **A clear statement of the business task and its purpose.**
-  * **A comprehensive description of the data sources utilized.**
-  * **Documentation of the cleaning and data manipulation phase.**
+  * **A comprehensive description of the data sources.**
+  * **Documentation of the data manipulation and cleaning step**
   * **The analysis with supporting visualizations and key findings.**
   * **Valuable insights and additional deliverables for further exploration.**
 
@@ -38,7 +38,7 @@ The primary stakeholder is the data analyst conducting the analysis. In the foll
   
 # Data source and Data description
 
-The data is located at [ai-jobs.net](https://ai-jobs.net/salaries/2023/) and entitled "The Global AI, ML, Data Science Salary Index for 2023" which is based on internal data survey submissions and jobs with open salaries, as the authors describe the data. The data is processed and updated every week. You can contribute to them by submitting your salary info.
+The data is located at [ai-jobs.net](https://ai-jobs.net/salaries/2023/) and entitled "The Global AI, ML, Data Science Salary Index for 2023" which is based on internal data survey submissions and jobs with open salaries. The data is processed and updated every week. You can contribute to them by submitting your salary info.
 
 I have downloaded the data set from Hummaam Qaasim's profile in [Kaggle](https://www.kaggle.com/datasets/hummaamqaasim/jobs-in-data), where you can find the data card, the Metadata, and the License.
 
@@ -140,7 +140,7 @@ data_work <- data_df %>%
 print(data_work)
 ```
 
-The data has been populated from 2020 until 2023. Moreover, '2023' is almost 79.7% of the total.
+The data has been populated from 2020 until 2023, being '2023' 79.7% of the total.
 
 * **Analyzing `job_category` and `job_title`: unique values and frequency**
 
@@ -309,11 +309,11 @@ ggplot(summary_table, aes(x = experience_level, y = job_category, fill = average
   
 Based on the heat map results, the following observations can be made:
 
-- The salary increases with experience level, except for the 'Data Analysis' category where the 'Senior' level has an average salary of \\$120k and the 'Executive' level has an average salary of \\$110k. For more detailed information about the 'Data Analyst' job category, please refer to the next section.
+- The salary increases with experience level, except for the 'Data Analysis' category where the 'Senior' has an average salary of \$120k and the 'Executive' has \$110k.
 
-- The average salary for entry-level positions is highest for the 'Data Science and Research' category with \\$101k, followed by 'Data Engineering' with \\$96k. However, the entry-level salary for 'Data Analysis' is only \\$70k, which is \\$31k less than the 'Data Science and Research' category. This indicates a significant difference.
+- The highest average salary for an entry-level position belongs to the 'Data Science and Research' category with \$101k, followed by 'Data Engineering' with \$96k. The entry-level Data Analysis average salary is \$70k, which is \$31k less than the 'Data Science and Research' category, which indicates a significant difference.
 
-- The highest salaries are represented by the 'Executive' level positions of 'Machine Learning AI' with \\$207k and 'Data Science and Research' with \\$204k.
+- The highest salaries are represented by the Executive Machine Learning AI with \$207k and  Executive Data Science and Research with \$204k.
   
 ## Exploring the Entry-level Data Analysis subgroup
 
@@ -411,7 +411,7 @@ Based on the bar chart results, the following observations can be made:
 
 Note the number of entries for each country and the 'Entry-level Data Analysis' subgroup in the dataset. For example, the United States has 103 entries, the United Kingdom has 10, Germany has 2, and Luxembourg has 1. This could affect the generalization of results, and it will be interesting to see if the outcome changes after updating the data.
   
-## How does the company size influence the Entry-level Data Analyst's salary?
+## How does the company size influence the Entry-level Data Analysts salary?
 
 ```{r}
 # Define the order of company size
@@ -441,7 +441,7 @@ I have analyzed the violin plot and made the following observations:
 
 * The average salary for medium-sized companies is higher than that of large-sized companies. It is worth noting that this plot does not consider other factors such as company location. For example, the 'United States' (the highest average salary overall) has more medium-sized entries in the data than large-sized.
 
-## How does the work setting influence the Entry-level Data Analyst's salary?
+## How does the work setting influence the Entry-level Data Analysts salary?
 
 ```{r}
 
@@ -500,7 +500,7 @@ ggplot(summary_table, aes(x = experience_level, y = company_setting, fill = aver
 
 Based on the results of the heat map, we can make the following observations:
 
-- In regards to Entry-level Data Analysts, the lowest average salary is represented by small companies with a hybrid work setup (\\$55k). On the other hand, the highest average salary is presented by medium-sized companies working in person with (\\$82k).
+- In regards to Entry-level Data Analysis subgroup, the lowest average salary is represented by small companies with a hybrid work setup (\\$55k). On the other hand, the highest average salary is presented by medium-sized companies working in person with (\\$82k).
 
 - Senior Data Analysts working in large companies in-person receive the highest average salary (\\$152k).
 
@@ -512,7 +512,7 @@ This section presents the key insights that address the business questions:
 
 - The correlation between **experience level** and **salary** is significant. The average salary tends to increase with experience level. For example, professionals in "Machine Learning and AI" job category witness substantial salary increases ranging from \\$93k (entry-level) to \\$207k (executive).
 
-- From the 10 job categories, most well-paid data-related jobs are '*Machine Learning and AI*', '*Data Science and Research*', '*Data Engineering*', and '*Leadership and Management*'. This insight reveals that the '*Data Analysts*' do not represent the most well-paid data-related career, but definely it is a good way to start.  
+- From the 10 job categories, the most well-paid data-related jobs are '*Machine Learning and AI*', '*Data Science and Research*', '*Data Engineering*', and '*Leadership and Management*'. This insight reveals that the '*Data Analysts*' do not represent the most well-paid data-related career, but definely it is a good way to start.  
 
 - Although 'BI and Visualization' category commands a higher average salary than 'Data Analysis', they both often share similar technical skills and responsibilities.
 
