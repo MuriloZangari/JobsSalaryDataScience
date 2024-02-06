@@ -500,29 +500,29 @@ ggplot(summary_table, aes(x = experience_level, y = company_setting, fill = aver
 
 Based on the results of the heat map, we can make the following observations:
 
-- Entry-level employees working in small companies with a hybrid work setup receive the lowest average salary. On the other hand, those working in medium-sized companies in person earn an average salary of \\$82k, which is the highest for entry-level positions.
+- In regards to Entry-level Data Analysts, the lowest average salary is represented by small companies with a hybrid work setup (\\$55k). On the other hand, the highest average salary is presented by medium-sized companies working in person with (\\$82k).
 
-- Senior Data Analysts working in large companies in-person receive the highest average salary.
+- Senior Data Analysts working in large companies in-person receive the highest average salary (\\$152k).
 
-- Overall, it can be observed that experience level is the factor that has the most significant impact on an employee's average salary in the US.
+- Overall, it can be observed that the experience level is the factor that has the most impact on an Data Analyst average salary in the US.
   
 # Key Insights and Recommendations:
 
-This section presents the key insights that address the business questions.
+This section presents the key insights that address the business questions:
 
-- The correlation between experience level and salary is significant. The average salary tends to increase with experience level. For example, professionals in "Machine Learning and AI" witness substantial salary increases ranging from \\$93k (entry-level) to \\$207k (executive).
+- The correlation between **experience level** and **salary** is significant. The average salary tends to increase with experience level. For example, professionals in "Machine Learning and AI" job category witness substantial salary increases ranging from \\$93k (entry-level) to \\$207k (executive).
 
-- The top five well-paid data-related jobs are 'Machine Learning and AI', 'Data Science and Research', 'Data Engineering', and 'Leadership and Management'.
+- From the 10 job categories, most well-paid data-related jobs are '*Machine Learning and AI*', '*Data Science and Research*', '*Data Engineering*', and '*Leadership and Management*'. This insight reveals that the '*Data Analysts*' do not represent the most well-paid data-related career, but definely it is a good way to start.  
 
-- Although 'BI and Visualization' category commands a higher average salary than 'Data Analysis' category, they both often share similar technical skills and responsibilities.
+- Although 'BI and Visualization' category commands a higher average salary than 'Data Analysis', they both often share similar technical skills and responsibilities.
 
-- The United States has the best salaries compared to other countries in all job categories, especially for the 'Data Analysis' category. The top three countries to start a career as an entry-level Data Analyst are the United States, the United Kingdom, and Germany, with salaries of $77k, \\$58k, and \\$57k, respectively. It is worth noting that we are not taking into account the cost of living in each country. To view the filtered data demographically, and according to other factors, please check the [Tableau Dashboard](https://public.tableau.com/app/profile/murilo.zangari/viz/JobsandSalariesinData-RelatedCareers/Dashboard1).
+- The United States represents 86.9\% of the company location in this dataset, and it is the country with best salaries in all job categories. The top three countries to start a career as an entry-level Data Analyst are the United States, the United Kingdom, and Germany, with salaries of $77k, \\$58k, and \\$57k, respectively. It is worth noting that we are not taking into account the cost of living in each country.
 
-- Working in person or remotely has minimal impact on the average salary. For instance, an entry-level data analyst receives an average salary of \\$73k in person and \\$72k remotely. However, the dataset's limited representation of hybrid work settings warrants cautious interpretation.
+- Working in person or remotely has minimal impact on the average salary. However, the dataset's limited representation of hybrid work setting warrants cautious interpretation.
 
 **Career Guidance:**
 
-Based on the insights, "Data Science and Research" and "Machine Learning and AI" stand out as promising career paths, offering lucrative opportunities from entry-level positions. The satisfaction of working in these fields aligns with their high demand and potential for professional growth.
+Based on the insights presented above, "Data Science and Research" and "Machine Learning and AI" stand out as promising career paths, offering lucrative opportunities and career progress. The satisfaction of working in these fields aligns with their high demand and potential for professional growth.
 
 **Further exploration:**
 
