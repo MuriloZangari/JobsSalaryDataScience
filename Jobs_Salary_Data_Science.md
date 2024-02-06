@@ -788,17 +788,16 @@ ggplot(summary_table, aes(x = experience_level, y = company_setting, fill = aver
 ```
 
 ![](Jobs_Salary_Data_Science_files/figure-gfm/unnamed-chunk-23-1.png)<!-- -->
-
 Based on the results of the heat map, we can make the following
 observations:
 
 - In regards to Entry-level Data Analysis subgroup, the lowest average
   salary is represented by small companies with a hybrid work setup
-  (\\55k). On the other hand, the highest average salary is presented by
-  medium-sized companies working in person with (\\82k).
+  (\$55k). On the other hand, the highest average salary is presented by
+  medium-sized companies working in person with (\$82k).
 
 - Senior Data Analysts working in large companies in-person receive the
-  highest average salary (\\152k).
+  highest average salary (\$152k).
 
 - Overall, it can be observed that the experience level is the factor
   that has the most impact on an Data Analyst average salary in the US.
@@ -811,24 +810,22 @@ questions:
 - The correlation between **experience level** and **salary** is
   significant. The average salary tends to increase with experience
   level. For example, professionals in “Machine Learning and AI” job
-  category witness substantial salary increases ranging from \\93k
-  (entry-level) to \\207k (executive).
+  category witness substantial salary increases ranging from \$93k
+  (entry-level) to \$207k (executive).
 
 - From the 10 job categories, the most well-paid data-related jobs are
-  ‘*Machine Learning and AI*’, ‘*Data Science and Research*’, ‘*Data
-  Engineering*’, and ‘*Leadership and Management*’. This insight reveals
-  that the ‘*Data Analysts*’ do not represent the most well-paid
+  **Machine Learning and AI**, **Data Science and Research**, **Data
+  Engineering**, and **Leadership and Management**. This insight reveals
+  that the **Data Analysts** do not represent the most well-paid
   data-related career, but definely it is a good way to start.
 
-- Although ‘BI and Visualization’ category commands a higher average
-  salary than ‘Data Analysis’, they both often share similar technical
+- Although **BI and Visualization** category commands a higher average
+  salary than **Data Analysis**, they both often share similar technical
   skills and responsibilities.
 
-- The United States represents 86.9% of the company location in this
-  dataset, and it is the country with best salaries in all job
-  categories. The top three countries to start a career as an
-  entry-level Data Analyst are the United States, the United Kingdom,
-  and Germany, with salaries of \$77k, \\58k, and \\57k, respectively.
+- The top three countries to start a career as an entry-level Data
+  Analyst are the **United States**, the **United Kingdom**, and
+  **Germany**, with salaries of \$77k, \$58k, and \$57k, respectively.
   It is worth noting that we are not taking into account the cost of
   living in each country.
 
