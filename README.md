@@ -1,12 +1,17 @@
-# Jobs and Salaries in Data-related Careers
-Salary Trends and Insights: An Analysis of the Data Analysis Professional Career
+# Salary Trends and Insights: An Analysis of the Data Analysis Professional Career
 
-Created in RStudio Desktop in R programming language.
+This case study was created using RStudio Desktop in the R programming language.
 
-For the R version of the case study, please check the file Jobs_Salary_Data_Science.md
+## Case Study Files
 
-For the Python version of the case study, please check the Kaggle's notebook in https://www.kaggle.com/code/murilozangari/jobs-and-salaries-in-data-related-careers-python
+- For the R version of the case study, please refer to the file `Jobs_Salary_Data_Science.md`.
+- For the Python version of the case study, you can find the Kaggle notebook [here](https://www.kaggle.com/code/murilozangari/jobs-and-salaries-in-data-related-careers-python).
 
-An interactive Tableau Dashbaord for this case study can be found in https://public.tableau.com/app/profile/murilo.zangari/viz/JobsandSalariesinData-RelatedCareers/Dashboard1
+## Interactive Tableau Dashboard
 
-For the slides presentation of this case of study, please check Google slides in https://docs.google.com/presentation/d/1FjdIht97sicdoYPerQHFOSk-nO2emGaNHl7mVgDi6XA/edit?usp=sharing
+An interactive Tableau Dashboard for this case study is available [here](https://public.tableau.com/app/profile/murilo.zangari/viz/JobsandSalariesinData-RelatedCareers/Dashboard1).
+
+## Slides Presentation
+
+You can access the slides presentation of this case study [here](https://docs.google.com/presentation/d/1FjdIht97sicdoYPerQHFOSk-nO2emGaNHl7mVgDi6XA/edit?usp=sharing).
+
